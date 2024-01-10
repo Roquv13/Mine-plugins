@@ -1,0 +1,4 @@
+name: plugin-mc
+version: '${project.version}'
+main: org.plugins.pluginmc.Plugin_mc
+api-version: '1.20'
