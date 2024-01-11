@@ -22,8 +22,9 @@ public final class Main extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
-        Player p = e.getPlayer();
-        e.getPlayer().sendMessage(ChatColor.BLUE + p.getName() + "Welcome to server!");
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        event.getPlayer().sendMessage(ChatColor.BLUE +
+                String.format("Welcome to server %s", player.getName()));
     }
 }
