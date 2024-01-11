@@ -6,7 +6,11 @@ import org.bukkit.command.CommandSender;
 import org.plugins.pluginmc.manager.ConfigManager;
 
 public class ItemShopCommand implements CommandExecutor {
+
+    private ConfigManager configManager;
+
     public ItemShopCommand(ConfigManager configManager) {
+        this.configManager = configManager;
     }
 
     @Override
