@@ -8,6 +8,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.commands.HelpCommand;
 import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.utils.ChatUtil;
 
 public final class Main extends JavaPlugin implements Listener {
 
@@ -30,8 +31,7 @@ public final class Main extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        event.getPlayer().sendMessage(ChatColor.BLUE +
-                String.format("Welcome to server %s", player.getName()));
+        player.sendMessage(ChatUtil.colorize(configManager.getJoinMessage().replace("{PLAYER}", player.getName())));
     }
 
     private void initConfig() {
