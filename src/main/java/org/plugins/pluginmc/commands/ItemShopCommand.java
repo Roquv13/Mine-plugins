@@ -10,6 +10,9 @@ import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemShopCommand implements CommandExecutor {
 
     private ConfigManager configManager;
@@ -27,19 +30,32 @@ public class ItemShopCommand implements CommandExecutor {
 
         if (args.length < 2) {
             sender.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/is <player> <service>")));
+            return true;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
         String service = args[1];
 
-        if (service.equalsIgnoreCase("diamond")) {
-            target.sendMessage("You bought diamond");
-            target.getInventory().addItem(new ItemStack(Material.DIAMOND));
-        }
+        List<String> items = new ArrayList<>();
+        items.add("diamond");
+        items.add("gold");
 
-        if (service.equalsIgnoreCase("gold")) {
-            target.sendMessage("You bought gold");
-            target.getInventory().addItem(new ItemStack(Material.GOLD_INGOT));
+        if (items.contains(service.toLowerCase())) {
+            if (target == null){
+                sender.sendMessage("There is no player with this name.");
+            } else {
+                if (service.equalsIgnoreCase("diamond")) {
+                    target.sendMessage("You bought diamond");
+                    target.getInventory().addItem(new ItemStack(Material.DIAMOND));
+                }
+
+                if (service.equalsIgnoreCase("gold")) {
+                    target.sendMessage("You bought gold");
+                    target.getInventory().addItem(new ItemStack(Material.GOLD_INGOT));
+                }
+            }
+        } else {
+            sender.sendMessage("There is no such item available. Try again.");
         }
 
         return false;
