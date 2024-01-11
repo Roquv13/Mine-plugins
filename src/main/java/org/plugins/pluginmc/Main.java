@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.plugins.pluginmc.commands.HelpCommand;
 
 public final class Main extends JavaPlugin implements Listener {
 
@@ -13,7 +14,7 @@ public final class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info(ChatColor.GREEN + "Plugin > started");
         getServer().getPluginManager().registerEvents(this, this);
-
+        getCommand("help").setExecutor(new HelpCommand());
     }
 
     @Override
