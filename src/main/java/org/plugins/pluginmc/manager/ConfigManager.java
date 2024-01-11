@@ -6,7 +6,7 @@ public class ConfigManager {
 
     private FileConfiguration config;
 
-    private ConfigManager(FileConfiguration config) {
+    public ConfigManager(FileConfiguration config) {
         this.config = config;
         config.options().copyDefaults(true);
     }
