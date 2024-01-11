@@ -1,0 +1,4 @@
+org\plugins\pluginmc\commands\HelpCommand.class
+org\plugins\pluginmc\Main.class
+org\plugins\pluginmc\manager\ConfigManager.class
+org\plugins\pluginmc\utils\ChatUtil.class

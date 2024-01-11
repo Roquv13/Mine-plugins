@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.commands.HelpCommand;
+import org.plugins.pluginmc.commands.ItemShopCommand;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
@@ -17,8 +18,9 @@ public final class Main extends JavaPlugin implements Listener {
     public void onEnable() {
         getLogger().info(ChatColor.GREEN + "Plugin > started");
         getServer().getPluginManager().registerEvents(this, this);
-        getCommand("help").setExecutor(new HelpCommand());
         configManager = new ConfigManager(getConfig());
+        getCommand("help").setExecutor(new HelpCommand());
+        getCommand("is").setExecutor(new ItemShopCommand(configManager));
         initConfig();
     }
 
