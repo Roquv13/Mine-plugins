@@ -1,4 +1,0 @@
-join_message: ' &8>> &7Player &4&l{PLAYER} &7welcome to server&6!'
-messages:
-  no-permissions: " &4Error! &7You have no permission &8(&7{PERM}&8)"
-  correct-usage: " &7Correct use&8: &2{USAGE}"
