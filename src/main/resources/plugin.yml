@@ -9,6 +9,11 @@ commands:
     usage: /help
     permission: plugin-mc.help
     permission-message: You don't have permission to use /help
+  help itemshop:
+    description: Display information about commands in itemshop
+    usage: /help itemshop
+    permission: plugin-mc.help itemshop
+    permission-message: You don't have permission to use /help itemshop
   itemshop:
     description: Using item shop in game
     usage: /itemshop [player] [item]
