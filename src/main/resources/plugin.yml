@@ -4,6 +4,18 @@ main: org.plugins.pluginmc.Main
 api-version: '1.20'
 author: roquv13
 commands:
-  help:
-  is:
+  help:plugin:
+    description: Display information about commands in plugin
+    usage: /help:plugin [player]
+    permission: plugin-mc.help:plugin
+    permission-message: You don't have permission to use /help:plugin
+  itemshop:
+    description: Using item shop in game
+    usage: /itemshop [player]
+    permission: plugin-mc.itemshop
+    permission-message: You don't have permission to use /itemshop
   effects:
+    description: Set up effects to player
+    usage: /effects [player]
+    permission: plugin-mc.effects
+    permission-message: You don't have permission to use /effects
