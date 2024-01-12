@@ -8,7 +8,16 @@ import org.plugins.pluginmc.utils.ChatUtil;
 
 public class HelpCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] strings) {
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (args.length == 0) {
+            showDefaultHelp(sender);
+        } else if (args.length == 1 && args[0].equalsIgnoreCase("itemshop")) {
+            showItemShopHelp(sender);
+        }
+        return false;
+    }
+
+    private void showDefaultHelp(CommandSender sender) {
         if (sender instanceof Player) {
             Player player = ((Player) sender).getPlayer();
             player.sendMessage(ChatUtil.colorize("&7/help itemshop - informations about item shop"));
@@ -17,6 +26,15 @@ public class HelpCommand implements CommandExecutor {
         } else {
             System.out.println("Only for players!");
         }
-        return false;
+    }
+
+    private void showItemShopHelp(CommandSender sender) {
+        if (sender instanceof Player) {
+            Player player = ((Player) sender).getPlayer();
+            player.sendMessage("/itemshop items - Display items in item shop");
+            player.sendMessage("/itemshop <player> <item> - Buy an item from item shop");
+        } else {
+            System.out.println("Only for players");
+        }
     }
 }
