@@ -29,10 +29,8 @@ public final class Main extends JavaPlugin implements Listener {
         configManager = new ConfigManager(getConfig());
 
         getCommand("help").setExecutor(new HelpCommand());
-
         getCommand("helpitemshop").setExecutor(new HelpItemShopCommand());
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager));
-
         gui = new Gui();
         getCommand("effects").setExecutor(new EffectsCommand(gui));
 

@@ -16,15 +16,30 @@ import java.util.List;
 public class ItemShopCommand implements CommandExecutor {
 
     private ConfigManager configManager;
+    private List<String> itemsList;
 
     public ItemShopCommand(ConfigManager configManager) {
         this.configManager = configManager;
+
+        // Initialize the items list
+        itemsList = new ArrayList<>();
+        itemsList.add("diamond");
+        itemsList.add("gold");
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("plugin-mc.itemshop")) {
             sender.sendMessage(ChatUtil.colorize(configManager.getPermissionError().replace("{PERM}", "roquv.itemshop")));
+            return true;
+        }
+
+        if (args.length == 1 && args[0].equalsIgnoreCase("items")) {
+            // Display the list of items
+            sender.sendMessage("Available items in the item shop:");
+            for (String item : itemsList) {
+                sender.sendMessage(item);
+            }
             return true;
         }
 
@@ -36,14 +51,11 @@ public class ItemShopCommand implements CommandExecutor {
         Player target = Bukkit.getPlayer(args[0]);
         String service = args[1];
 
-        List<String> items = new ArrayList<>();
-        items.add("diamond");
-        items.add("gold");
-
-        if (items.contains(service.toLowerCase())) {
-            if (target == null){
+        if (itemsList.contains(service.toLowerCase())) {
+            if (target == null) {
                 sender.sendMessage("There is no player with this name.");
             } else {
+                // Handle item purchase logic
                 if (service.equalsIgnoreCase("diamond")) {
                     target.sendMessage("You bought diamond");
                     target.getInventory().addItem(new ItemStack(Material.DIAMOND));
@@ -58,6 +70,6 @@ public class ItemShopCommand implements CommandExecutor {
             sender.sendMessage("There is no such item available. Try again.");
         }
 
-        return false;
+        return true;
     }
 }
