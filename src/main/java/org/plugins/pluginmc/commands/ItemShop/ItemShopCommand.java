@@ -1,4 +1,4 @@
-package org.plugins.pluginmc.commands;
+package org.plugins.pluginmc.commands.ItemShop;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

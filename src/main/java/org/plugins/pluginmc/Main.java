@@ -1,14 +1,13 @@
 package org.plugins.pluginmc;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.plugins.pluginmc.commands.EffectsCommand;
+import org.plugins.pluginmc.commands.Effects.EffectsCommand;
 import org.plugins.pluginmc.commands.HelpCommand;
-import org.plugins.pluginmc.commands.ItemShopCommand;
+import org.plugins.pluginmc.commands.ItemShop.ItemShopCommand;
 import org.plugins.pluginmc.gui.Gui;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
