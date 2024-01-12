@@ -11,9 +11,9 @@ public class HelpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] strings) {
         if (sender instanceof Player) {
             Player player = ((Player) sender).getPlayer();
-            player.sendMessage(ChatUtil.colorize("&7/rank - informations about ranks"));
-            player.sendMessage(ChatUtil.colorize("&8/guild - informations about guilds"));
-            player.sendMessage(ChatUtil.colorize("&b/tnt - informations about tnt"));
+            player.sendMessage(ChatUtil.colorize("&7/help itemshop - informations about item shop"));
+            player.sendMessage(ChatUtil.colorize("&8/help effects - informations about Effects"));
+            player.sendMessage(ChatUtil.colorize("&b/help <soon> - informations about nothing"));
         } else {
             System.out.println("Only for players!");
         }

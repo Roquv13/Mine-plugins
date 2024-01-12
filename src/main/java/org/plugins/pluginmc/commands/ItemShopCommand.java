@@ -23,13 +23,13 @@ public class ItemShopCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("roquv.itemshop")) {
+        if (!sender.hasPermission("plugin-mc.itemshop")) {
             sender.sendMessage(ChatUtil.colorize(configManager.getPermissionError().replace("{PERM}", "roquv.itemshop")));
             return true;
         }
 
         if (args.length < 2) {
-            sender.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/is <player> <service>")));
+            sender.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/itemshop <player> <service>")));
             return true;
         }
 
