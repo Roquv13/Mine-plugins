@@ -15,25 +15,32 @@ import org.plugins.pluginmc.utils.ChatUtil;
 
 public final class Main extends JavaPlugin implements Listener {
 
+    private String name = getDescription().getName();
+
     private ConfigManager configManager;
 
     private Gui gui;
 
     @Override
     public void onEnable() {
-        getLogger().info(ChatColor.GREEN + "Plugin > started");
+        this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
+
         getServer().getPluginManager().registerEvents(this, this);
         configManager = new ConfigManager(getConfig());
-        getCommand("help").setExecutor(new HelpCommand());
-        getCommand("is").setExecutor(new ItemShopCommand(configManager));
+
+        getCommand("help:plugin").setExecutor(new HelpCommand());
+
+        getCommand("itemshop").setExecutor(new ItemShopCommand(configManager));
+
         gui = new Gui();
         getCommand("effects").setExecutor(new EffectsCommand(gui));
+
         initConfig();
     }
 
     @Override
     public void onDisable() {
-        getLogger().info(ChatColor.GREEN + "Plugin > stopped");
+        this.getLogger().info(String.format("Plugin \"%s\" stopped.", name));
         saveConfig();
     }
 
