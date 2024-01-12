@@ -6,7 +6,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.commands.Effects.EffectsCommand;
-import org.plugins.pluginmc.commands.HelpCommand;
+import org.plugins.pluginmc.commands.Help.HelpCommand;
+import org.plugins.pluginmc.commands.Help.HelpItemShopCommand;
 import org.plugins.pluginmc.commands.ItemShop.ItemShopCommand;
 import org.plugins.pluginmc.gui.Gui;
 import org.plugins.pluginmc.manager.ConfigManager;
@@ -29,6 +30,7 @@ public final class Main extends JavaPlugin implements Listener {
 
         getCommand("help").setExecutor(new HelpCommand());
 
+        getCommand("helpitemshop").setExecutor(new HelpItemShopCommand());
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager));
 
         gui = new Gui();

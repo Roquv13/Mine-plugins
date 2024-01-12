@@ -1,4 +1,4 @@
-package org.plugins.pluginmc.commands;
+package org.plugins.pluginmc.commands.Help;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
