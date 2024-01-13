@@ -9,6 +9,7 @@ import org.plugins.pluginmc.commands.EffectsCommand;
 import org.plugins.pluginmc.commands.HelpCommand;
 import org.plugins.pluginmc.commands.ItemShopCommand;
 import org.plugins.pluginmc.gui.Gui;
+import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
@@ -20,6 +21,8 @@ public final class Main extends JavaPlugin implements Listener {
 
     private Gui gui;
 
+    private ItemShopGui isGui;
+
     @Override
     public void onEnable() {
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
@@ -28,7 +31,8 @@ public final class Main extends JavaPlugin implements Listener {
         configManager = new ConfigManager(getConfig());
 
         getCommand("help").setExecutor(new HelpCommand());
-        getCommand("itemshop").setExecutor(new ItemShopCommand(configManager));
+        isGui = new ItemShopGui();
+        getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
         gui = new Gui();
         getCommand("effects").setExecutor(new EffectsCommand(gui));
 
