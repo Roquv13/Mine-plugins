@@ -15,6 +15,8 @@ import org.plugins.pluginmc.utils.ChatUtil;
 
 public final class Main extends JavaPlugin implements Listener {
 
+    private static Main instance;
+
     private String name = getDescription().getName();
 
     private ConfigManager configManager;
@@ -23,8 +25,13 @@ public final class Main extends JavaPlugin implements Listener {
 
     private ItemShopGui isGui;
 
+    public static Main getInstance() {
+        return instance;
+    }
+
     @Override
     public void onEnable() {
+        instance = this;
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
         getServer().getPluginManager().registerEvents(this, this);
