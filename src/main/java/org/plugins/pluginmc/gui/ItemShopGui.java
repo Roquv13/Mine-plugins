@@ -25,6 +25,18 @@ public class ItemShopGui implements Listener {
         return createItem(Material.NETHER_BRICK, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
     }
 
+    private ItemStack createDiamondSword() {
+        return createItem(Material.DIAMOND_SWORD, "&b&lDiamond Sword", "&cPrice: &l&a35 &l&6coins ");
+    }
+
+    private ItemStack createDiamondPickaxe() {
+        return createItem(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
+    }
+
+    private ItemStack createNetheriteUpgrade() {
+        return createItem(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
+    }
+
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
 
