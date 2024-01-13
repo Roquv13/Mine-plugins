@@ -19,8 +19,14 @@ public class ItemShopGui {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
 
         ItemStack gold = createItem(Material.GOLD_INGOT, "&6Gold &6Ingot", "&cPrice: &l&a5 &l&6coins ");
-        ItemStack diamond = createItem(Material.DIAMOND, "&6Diamond", "&cPrice: &l&a20 &l&6coins ");
-        ItemStack netherite = createItem(Material.NETHER_BRICK, "&6Gold &6Ingot", "&cPrice: &l&a40 &l&6coins ");
+        ItemStack diamond = createItem(Material.DIAMOND, "&bDiamond", "&cPrice: &l&a20 &l&6coins ");
+        ItemStack netherite = createItem(Material.NETHER_BRICK, "&0Netherite", "&cPrice: &l&a40 &l&6coins ");
+
+        gui.setItem(1, gold);
+        gui.setItem(2, diamond);
+        gui.setItem(3, netherite);
+
+        player.openInventory(gui);
     }
 
     public ItemStack createItem(Material material, String name, String lore) {
