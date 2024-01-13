@@ -43,6 +43,9 @@ public class ItemShopGui implements Listener {
         gui.setItem(0, createGoldIngotItem());
         gui.setItem(1, createDiamondItem());
         gui.setItem(2, createNetheriteBrickItem());
+        gui.setItem(3, createDiamondSword());
+        gui.setItem(4, createDiamondPickaxe());
+        gui.setItem(5, createNetheriteUpgrade());
 
         player.openInventory(gui);
     }
