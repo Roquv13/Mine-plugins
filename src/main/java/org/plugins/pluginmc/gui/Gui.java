@@ -16,8 +16,8 @@ public class Gui {
 
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
-        ItemStack goldPickaxe = createItem(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", ChatUtil.colorize("&8>> &7Price: &6&n10 blocks of emeralds&7."));
-        ItemStack diamondPickaxe = createItem(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", ChatUtil.colorize("&8>> &7Price: &6&n20 blocks of emeralds&7."));
+        ItemStack goldPickaxe = createItem(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n10 blocks of emeralds&7.");
+        ItemStack diamondPickaxe = createItem(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
         gui.setItem(3, goldPickaxe);
         gui.setItem(5, diamondPickaxe);
         player.openInventory(gui);
