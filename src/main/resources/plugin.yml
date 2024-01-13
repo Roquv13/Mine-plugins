@@ -21,3 +21,16 @@ commands:
     usage: /effects [player]
     permission: plugin-mc.effects
     permission-message: You don't have permission to use /effects
+
+permissions:
+  help:
+    description: Allows you to get infomations about plugin
+    default: true
+
+  itemshop:
+    description: Allows you to use itemshop
+    default: true
+
+  effects:
+    description: Allows you to use effects given to player
+    default: true
