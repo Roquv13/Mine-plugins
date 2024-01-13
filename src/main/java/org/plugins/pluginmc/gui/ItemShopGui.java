@@ -1,7 +1,6 @@
 package org.plugins.pluginmc.gui;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -19,8 +18,8 @@ public class ItemShopGui {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
 
         ItemStack gold = createItem(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
-        ItemStack diamond = createItem(Material.DIAMOND, "&e&lDiamond", "&cPrice: &l&a20 &l&6coins ");
-        ItemStack netherite = createItem(Material.NETHER_BRICK, "&e&lNetherite", "&cPrice: &l&a40 &l&6coins ");
+        ItemStack diamond = createItem(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ");
+        ItemStack netherite = createItem(Material.NETHER_BRICK, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
 
         gui.setItem(0, gold);
         gui.setItem(1, diamond);
