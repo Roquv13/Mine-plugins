@@ -27,7 +27,7 @@ public class Gui {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatUtil.colorize(name));
-        itemMeta.setLore(Collections.singletonList(lore));
+        itemMeta.setLore(Collections.singletonList(ChatUtil.colorize(lore)));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }

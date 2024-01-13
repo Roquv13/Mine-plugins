@@ -18,13 +18,13 @@ public class ItemShopGui {
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
 
-        ItemStack gold = createItem(Material.GOLD_INGOT, "&6Gold &6Ingot", "&cPrice: &l&a5 &l&6coins ");
-        ItemStack diamond = createItem(Material.DIAMOND, "&bDiamond", "&cPrice: &l&a20 &l&6coins ");
-        ItemStack netherite = createItem(Material.NETHER_BRICK, "&0Netherite", "&cPrice: &l&a40 &l&6coins ");
+        ItemStack gold = createItem(Material.GOLD_INGOT, "&pGold &pIngot", "&cPrice: &l&a5 &l&6coins ");
+        ItemStack diamond = createItem(Material.DIAMOND, "&sDiamond", "&cPrice: &l&a20 &l&6coins ");
+        ItemStack netherite = createItem(Material.NETHER_BRICK, "&jNetherite", "&cPrice: &l&a40 &l&6coins ");
 
-        gui.setItem(1, gold);
-        gui.setItem(2, diamond);
-        gui.setItem(3, netherite);
+        gui.setItem(0, gold);
+        gui.setItem(1, diamond);
+        gui.setItem(2, netherite);
 
         player.openInventory(gui);
     }
@@ -33,7 +33,7 @@ public class ItemShopGui {
         ItemStack itemStack = new ItemStack(material);
         ItemMeta itemMeta = itemStack.getItemMeta();
         itemMeta.setDisplayName(ChatUtil.colorize(name));
-        itemMeta.setLore(Collections.singletonList(lore));
+        itemMeta.setLore(Collections.singletonList(ChatUtil.colorize(lore)));
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
