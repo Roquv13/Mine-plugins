@@ -11,13 +11,16 @@ public class HelpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 0) {
             showDefaultHelp(sender);
+            return true;
         } else if (args.length == 1) {
             if (args[0].equalsIgnoreCase("itemshop")) {
                 showItemShopHelp(sender);
+                return true;
             }
 
             if (args[0].equalsIgnoreCase("effects")) {
                 showEffectsHelp(sender);
+                return true;
             }
         }
         return false;
