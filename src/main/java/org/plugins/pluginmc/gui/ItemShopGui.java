@@ -11,51 +11,28 @@ import org.plugins.pluginmc.utils.ChatUtil;
 
 import java.util.Collections;
 
-public class ItemShopGui implements Listener {
+public class ItemShopGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize("&6&lItem &2&lShop");
-
-    private ItemStack createGoldIngotItem() {
-        return createItem(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
-    }
-    private ItemStack createDiamondItem() {
-        return createItem(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ");
-    }
-    private ItemStack createNetheriteBrickItem() {
-        return createItem(Material.NETHER_BRICK, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
-    }
-
-    private ItemStack createDiamondSword() {
-        return createItem(Material.DIAMOND_SWORD, "&b&lDiamond Sword", "&cPrice: &l&a35 &l&6coins ");
-    }
-
-    private ItemStack createDiamondPickaxe() {
-        return createItem(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
-    }
-
-    private ItemStack createNetheriteUpgrade() {
-        return createItem(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
-    }
 
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
 
-        gui.setItem(0, createGoldIngotItem());
-        gui.setItem(1, createDiamondItem());
-        gui.setItem(2, createNetheriteBrickItem());
-        gui.setItem(3, createDiamondSword());
-        gui.setItem(4, createDiamondPickaxe());
-        gui.setItem(5, createNetheriteUpgrade());
+        ItemStack goldIngot = create(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
+        ItemStack diamond = create(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ")
+        ItemStack netherIngot = create(Material.NETHERITE_INGOT, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
+        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&b&lDiamond Sword", "&cPrice: &l&a35 &l&6coins ");
+        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
+        ItemStack upgradeTemplate = create(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
+
+
+        gui.setItem(0, goldIngot);
+        gui.setItem(1, diamond);
+        gui.setItem(2, netherIngot);
+        gui.setItem(3, diamondSword);
+        gui.setItem(4, diamondPickaxe);
+        gui.setItem(5, upgradeTemplate);
 
         player.openInventory(gui);
-    }
-
-    public ItemStack createItem(Material material, String name, String lore) {
-        ItemStack itemStack = new ItemStack(material);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(ChatUtil.colorize(name));
-        itemMeta.setLore(Collections.singletonList(ChatUtil.colorize(lore)));
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
     }
 }
