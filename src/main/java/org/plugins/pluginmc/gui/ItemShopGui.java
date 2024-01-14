@@ -3,7 +3,9 @@ package org.plugins.pluginmc.gui;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -37,5 +39,24 @@ public class ItemShopGui extends Item implements Listener {
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
         player.openInventory(gui);
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getView().getTitle().equals(guiName)) {
+            event.setCancelled(true);
+
+            if (event.getCurrentItem() != null) {
+                if (event.getCurrentItem().getType() == Material.GOLD_INGOT) {
+                    Player player = (Player) event.getWhoClicked();
+
+                    //Add item to inventory
+                    ItemStack goldIngot = new ItemStack(Material.GOLD_INGOT, 1);
+                    player.getInventory().addItem(goldIngot);
+
+                    player.sendMessage(ChatUtil.colorize("&aYou bought gold ingot"));
+                }
+            }
+        }
     }
 }
