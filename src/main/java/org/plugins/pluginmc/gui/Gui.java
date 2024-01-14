@@ -23,7 +23,7 @@ public class Gui extends Item implements Listener {
         ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
         gui.setItem(3, goldPickaxe);
         gui.setItem(5, diamondPickaxe);
-        Bukkit.getPluginManager().registerEvents(this, Main.getInstance()); // Assuming YourPlugin has a method getInstance()
+        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
         player.openInventory(gui);
     }
