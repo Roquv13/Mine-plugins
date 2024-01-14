@@ -39,7 +39,7 @@ public class ItemShopGui extends Item implements Listener {
 
         return items;
     }
-    
+
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
         Map<Integer, ItemStack> items = createItems();
@@ -55,18 +55,19 @@ public class ItemShopGui extends Item implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        Map<Integer, ItemStack> items = createItems();
+
         if (event.getView().getTitle().equals(guiName)) {
             event.setCancelled(true);
 
             if (event.getCurrentItem() != null) {
-                if (event.getCurrentItem().getType() == Material.GOLD_INGOT) {
-                    Player player = (Player) event.getWhoClicked();
+                for (ItemStack item : items.values()) {
+                    if (event.getCurrentItem().getType() == item.getType()) {
 
-                    //Add item to inventory
-                    ItemStack goldIngot = new ItemStack(Material.GOLD_INGOT, 1);
-                    player.getInventory().addItem(goldIngot);
+                        Player player = (Player) event.getWhoClicked();
 
-                    player.sendMessage(ChatUtil.colorize("&aYou bought gold ingot"));
+                        player.getInventory().addItem(item);
+                    }
                 }
             }
         }
