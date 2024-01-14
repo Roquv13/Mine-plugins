@@ -47,21 +47,25 @@ public class Gui extends Item implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
+        Map<Integer, ItemStack> items = createItems();
+
         if (event.getView().getTitle().equals(guiName)) {
             event.setCancelled(true); // Prevent item moving or swapping
 
             if (event.getCurrentItem() != null) {
                 // Check which item was clicked
-                if (event.getCurrentItem().getType() == Material.GOLDEN_PICKAXE) {
-                    // Handle the effect for the gold pickaxe
-                    Player player = (Player) event.getWhoClicked();
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 1));
-                    player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
-                } else if (event.getCurrentItem().getType() == Material.DIAMOND_PICKAXE) {
-                    // Handle the effect for the diamond pickaxe
-                    Player player = (Player) event.getWhoClicked();
-                    player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 2));
-                    player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 3!"));
+                for (ItemStack item : items.values()) {
+                    if (event.getCurrentItem().getType() == item.getType()) {
+                        Player player = (Player) event.getWhoClicked();
+
+                        if (item.getType() == Material.GOLDEN_PICKAXE) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 1));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
+                        } else if (item.getType() == Material.DIAMOND_PICKAXE) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 3!"));
+                        }
+                    }
                 }
             }
         }
