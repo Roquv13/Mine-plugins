@@ -8,36 +8,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
-import java.util.Collections;
-
-public class Gui implements Listener {
+public class Gui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize(" &8> &aEFFECTS");
 
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
-        ItemStack goldPickaxe = createItem(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n10 blocks of emeralds&7.");
-        ItemStack diamondPickaxe = createItem(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
+        ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n10 blocks of emeralds&7.");
+        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
         gui.setItem(3, goldPickaxe);
         gui.setItem(5, diamondPickaxe);
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance()); // Assuming YourPlugin has a method getInstance()
 
         player.openInventory(gui);
-    }
-
-    public ItemStack createItem(Material material, String name, String lore) {
-        ItemStack itemStack = new ItemStack(material);
-        ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(ChatUtil.colorize(name));
-        itemMeta.setLore(Collections.singletonList(ChatUtil.colorize(lore)));
-        itemStack.setItemMeta(itemMeta);
-        return itemStack;
     }
 
     @EventHandler
