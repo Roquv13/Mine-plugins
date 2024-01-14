@@ -13,16 +13,33 @@ import org.bukkit.potion.PotionEffectType;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Gui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize(" &8> &aEFFECTS");
 
-    public void openGui(Player player) {
-        Inventory gui = Bukkit.createInventory(player, 9, guiName);
+    public Map<Integer, ItemStack> createItems() {
+        Map<Integer, ItemStack> items = new HashMap<>();
+
         ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n10 blocks of emeralds&7.");
         ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
-        gui.setItem(3, goldPickaxe);
-        gui.setItem(5, diamondPickaxe);
+
+        items.put(3, goldPickaxe);
+        items.put(5, diamondPickaxe);
+
+        return items;
+    }
+
+    public void openGui(Player player) {
+        Inventory gui = Bukkit.createInventory(player, 9, guiName);
+        Map<Integer, ItemStack> items = createItems();
+
+        for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
+            gui.setItem(entry.getKey(), entry.getValue());
+        }
+
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
         player.openInventory(gui);
