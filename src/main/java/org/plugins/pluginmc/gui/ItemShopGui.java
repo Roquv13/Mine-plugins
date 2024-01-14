@@ -13,13 +13,15 @@ import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemShopGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize("&6&lItem &2&lShop");
 
-    public void openGui(Player player) {
-        Inventory gui = Bukkit.createInventory(player, 9, guiName);
+    public Map<Integer, ItemStack> createItems() {
+        Map<Integer, ItemStack> items = new HashMap<>();
 
         ItemStack goldIngot = create(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
         ItemStack diamond = create(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ");
@@ -28,13 +30,23 @@ public class ItemShopGui extends Item implements Listener {
         ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
         ItemStack upgradeTemplate = create(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
 
+        items.put(0, goldIngot);
+        items.put(1, diamond);
+        items.put(2, netherIngot);
+        items.put(3, diamondSword);
+        items.put(4, diamondPickaxe);
+        items.put(5, upgradeTemplate);
 
-        gui.setItem(0, goldIngot);
-        gui.setItem(1, diamond);
-        gui.setItem(2, netherIngot);
-        gui.setItem(3, diamondSword);
-        gui.setItem(4, diamondPickaxe);
-        gui.setItem(5, upgradeTemplate);
+        return items;
+    }
+    
+    public void openGui(Player player) {
+        Inventory gui = Bukkit.createInventory(player, 9, guiName);
+        Map<Integer, ItemStack> items = createItems();
+
+        for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
+            gui.setItem(entry.getKey(), entry.getValue());
+        }
 
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
