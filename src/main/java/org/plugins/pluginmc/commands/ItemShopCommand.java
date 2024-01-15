@@ -40,16 +40,15 @@ public class ItemShopCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length == 1) {
-            if (args[0].equalsIgnoreCase("items")) {
-                player.sendMessage("Available items in the item shop:");
-                for (String item : itemsList) {
-                    player.sendMessage(item);
-                }
-            }
+        if (args[0] == null) {
+            isGui.openGui(player);
+            return true;
+        }
 
-            if (args[0] == null) {
-                isGui.openGui(player);
+        if (args.length == 1 && args[0].equalsIgnoreCase("items")) {
+            player.sendMessage("Available items in the item shop:");
+            for (String item : itemsList) {
+                player.sendMessage(item);
             }
 
             return true;
