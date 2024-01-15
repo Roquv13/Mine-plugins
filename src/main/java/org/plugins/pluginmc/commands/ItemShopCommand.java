@@ -20,17 +20,13 @@ public class ItemShopCommand extends Item implements CommandExecutor {
 
     private ItemShopGui isGui;
     private ConfigManager configManager;
-    private List<String> itemsList;
+    private Map<String, Material> materialMap;
 
     public ItemShopCommand(ConfigManager configManager, ItemShopGui isGui) {
         this.configManager = configManager;
         this.isGui = isGui;
 
-        // Initialize the items list
-        itemsList = new ArrayList<>();
-        itemsList.add("gold");
-        itemsList.add("diamond");
-        itemsList.add("netherite");
+        materialMap = materialsMap();
     }
 
     @Override
@@ -49,40 +45,35 @@ public class ItemShopCommand extends Item implements CommandExecutor {
 
         if (args.length == 1 && args[0].equalsIgnoreCase("items")) {
             player.sendMessage("Available items in the item shop:");
-            for (String item : itemsList) {
+            for (String item : materialMap.keySet()) {
                 player.sendMessage(item);
             }
 
             return true;
         }
 
-        if (args.length < 2) {
-            player.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/itemshop <player> <service>")));
+        if (args.length < 2 || args.length > 3) {
+            player.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/itemshop <player> <item>")));
             return true;
         }
 
         Player target = Bukkit.getPlayer(args[0]);
-        String service = args[1];
 
-        if (itemsList.contains(service.toLowerCase())) {
+        String service;
+        if (args.length == 2) {
+            service = args[1];
+        } else {
+            service = args[1] + " " + args[2];
+        }
+
+        if (materialMap.containsKey(service)) {
             if (target == null) {
                 player.sendMessage("There is no player with this name.");
             } else {
-                if (service.equalsIgnoreCase("gold")) {
-                    target.sendMessage("You bought gold");
-                    target.getInventory().addItem(new ItemStack(Material.GOLD_INGOT));
-                }
-
-                if (service.equalsIgnoreCase("diamond")) {
-                    target.sendMessage("You bought diamond");
-                    target.getInventory().addItem(new ItemStack(Material.DIAMOND));
-                }
-
-                if (service.equalsIgnoreCase("netherite")) {
-                    target.sendMessage("You bought netherite");
-                    target.getInventory().addItem(new ItemStack(Material.NETHERITE_INGOT));
-                }
+                target.sendMessage("You bought " + service);
+                target.getInventory().addItem(new ItemStack(materialMap.get(service)));
             }
+            player.sendMessage(service);
         } else {
             player.sendMessage("There is no such item available. Try again.");
         }
