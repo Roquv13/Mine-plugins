@@ -75,48 +75,44 @@ public class Gui extends Item implements Listener {
 
                         Material itemType = item.getType();
 
-                        if (itemType == Material.GOLDEN_PICKAXE) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 2400, 1));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 1!"));
-                            break;
-                        } else if (itemType == Material.DIAMOND_PICKAXE) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 3600, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
-                            break;
-                        } else if (itemType == Material.GOLDEN_BOOTS) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 1));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 1!"));
-                            break;
-                        } else if (itemType == Material.DIAMOND_BOOTS) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 2!"));
-                            break;
-                        } else if (itemType == Material.GOLDEN_SWORD) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 1!"));
-                            break;
-                        } else if (itemType == Material.DIAMOND_SWORD) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 2!"));
-                            break;
-                        } else if (itemType == Material.TOTEM_OF_UNDYING) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 4800, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained REGENERATION!"));
-                            break;
-                        } else if (itemType == Material.POTION) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 6000, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained NIGHT VISION!"));
-                            break;
-                        } else if (itemType == Material.ENCHANTED_GOLDEN_APPLE) {
-                            player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 7200, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained HEALTH BOOST!"));
-                            break;
-                        } else {
-                            player.sendMessage(ChatUtil.colorize("&4Effect wasn't given to player!"));
-                        }
+                        addEffect(player, itemType);
+                        break;
                     }
                 }
             }
+        }
+    }
+
+    public void addEffect(Player player, Material itemType) {
+        if (itemType == Material.GOLDEN_PICKAXE) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 2400, 1));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 1!"));
+        } else if (itemType == Material.DIAMOND_PICKAXE) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 3600, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
+        } else if (itemType == Material.GOLDEN_BOOTS) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 1));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 1!"));
+        } else if (itemType == Material.DIAMOND_BOOTS) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 2!"));
+        } else if (itemType == Material.GOLDEN_SWORD) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 1));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 1!"));
+        } else if (itemType == Material.DIAMOND_SWORD) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 3600, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 2!"));
+        } else if (itemType == Material.TOTEM_OF_UNDYING) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 4800, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained REGENERATION!"));
+        } else if (itemType == Material.POTION) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 6000, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained NIGHT VISION!"));
+        } else if (itemType == Material.ENCHANTED_GOLDEN_APPLE) {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 7200, 2));
+            player.sendMessage(ChatUtil.colorize("&aYou have gained HEALTH BOOST!"));
+        } else {
+            player.sendMessage(ChatUtil.colorize("&4Effect wasn't given to player!"));
         }
     }
 }
