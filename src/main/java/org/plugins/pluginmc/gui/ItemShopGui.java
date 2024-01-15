@@ -20,6 +20,10 @@ public class ItemShopGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize("&6&lItem &2&lShop");
 
+    public ItemShopGui() {
+        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+    }
+
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
         Map<Integer, ItemStack> items = createItems();
@@ -27,8 +31,6 @@ public class ItemShopGui extends Item implements Listener {
         for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
             gui.setItem(entry.getKey(), entry.getValue());
         }
-
-        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
         player.openInventory(gui);
     }
@@ -55,7 +57,7 @@ public class ItemShopGui extends Item implements Listener {
         player.getInventory().addItem(item);
         player.sendMessage(ChatUtil.colorize("&aYou purchased " + item.getItemMeta().getDisplayName()));
     }
-    
+
     public Map<Integer, ItemStack> createItems() {
         Map<Integer, ItemStack> items = new HashMap<>();
 
