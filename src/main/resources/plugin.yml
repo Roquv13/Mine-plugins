@@ -12,7 +12,7 @@ commands:
 
   itemshop:
     description: Using item shop in game
-    usage: /itemshop [player] [item]
+    usage: /itemshop or /itemshop [player] [item]
     permission: plugin-mc.itemshop
     permission-message: You don't have permission to use /itemshop
 
