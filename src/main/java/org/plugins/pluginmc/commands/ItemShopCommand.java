@@ -59,12 +59,15 @@ public class ItemShopCommand extends Item implements CommandExecutor {
 
         Player target = Bukkit.getPlayer(args[0]);
 
+        //Add check if service letters is upper case
         String service;
         if (args.length == 2) {
-            service = args[1];
+            service = args[1].substring(0, 1).toUpperCase() + args[1].substring(1).toLowerCase();
         } else {
-            service = args[1] + " " + args[2];
+            service = args[1].substring(0, 1).toUpperCase() + args[1].substring(1).toLowerCase()
+                    + " " + args[2].substring(0, 1).toUpperCase() + args[2].substring(1).toLowerCase();
         }
+
 
         if (materialMap.containsKey(service)) {
             if (target == null) {
