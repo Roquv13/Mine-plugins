@@ -17,7 +17,7 @@ import org.plugins.pluginmc.utils.ChatUtil;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Gui extends Item implements Listener {
+public class EffectsGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize(" &8> &aEFFECTS");
 

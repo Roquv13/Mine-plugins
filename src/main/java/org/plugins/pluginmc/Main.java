@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.commands.EffectsCommand;
 import org.plugins.pluginmc.commands.HelpCommand;
 import org.plugins.pluginmc.commands.ItemShopCommand;
-import org.plugins.pluginmc.gui.Gui;
+import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
@@ -21,7 +21,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     private ConfigManager configManager;
 
-    private Gui gui;
+    private EffectsGui effectsGui;
 
     private ItemShopGui isGui;
 
@@ -40,8 +40,8 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("help").setExecutor(new HelpCommand());
         isGui = new ItemShopGui();
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
-        gui = new Gui();
-        getCommand("effects").setExecutor(new EffectsCommand(gui));
+        effectsGui = new EffectsGui();
+        getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
 
         initConfig();
     }

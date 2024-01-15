@@ -48,7 +48,7 @@ public class ItemShopCommand implements CommandExecutor {
                 }
             }
 
-            if (args[0].equalsIgnoreCase("gui")) {
+            if (args[0] == null) {
                 isGui.openGui(player);
             }
 
