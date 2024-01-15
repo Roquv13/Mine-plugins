@@ -21,6 +21,10 @@ public class EffectsGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize(" &8> &aEFFECTS");
 
+    public EffectsGui() {
+        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
+    }
+
     public Map<Integer, ItemStack> createItems() {
         Map<Integer, ItemStack> items = new HashMap<>();
 
@@ -54,8 +58,6 @@ public class EffectsGui extends Item implements Listener {
         for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
             gui.setItem(entry.getKey(), entry.getValue());
         }
-
-        Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
 
         player.openInventory(gui);
     }
