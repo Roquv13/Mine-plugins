@@ -75,7 +75,7 @@ public class Gui extends Item implements Listener {
 
                         Material itemType = item.getType();
 
-                        if (itemType== Material.GOLDEN_PICKAXE) {
+                        if (itemType == Material.GOLDEN_PICKAXE) {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 2400, 1));
                             player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 1!"));
                             break;
@@ -87,7 +87,7 @@ public class Gui extends Item implements Listener {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 1));
                             player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 1!"));
                             break;
-                        }  else if (itemType == Material.DIAMOND_BOOTS) {
+                        } else if (itemType == Material.DIAMOND_BOOTS) {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 3600, 2));
                             player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 2!"));
                             break;
@@ -111,6 +111,8 @@ public class Gui extends Item implements Listener {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 7200, 2));
                             player.sendMessage(ChatUtil.colorize("&aYou have gained HEALTH BOOST!"));
                             break;
+                        } else {
+                            player.sendMessage(ChatUtil.colorize("&4Effect wasn't given to player!"));
                         }
                     }
                 }
