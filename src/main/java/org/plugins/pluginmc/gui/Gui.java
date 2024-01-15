@@ -33,15 +33,15 @@ public class Gui extends Item implements Listener {
         ItemStack potion = create(Material.POTION, "&e&lNIGHT VISION", "&8>> &7Price: &6&n50 coins&7.");
         ItemStack enchantedGoldenApple = create(Material.ENCHANTED_GOLDEN_APPLE, "&e&lHEALTH BOOST", "&8>> &7Price: &6&n80 coins&7.");
 
-        items.put(1, goldPickaxe);
-        items.put(2, diamondPickaxe);
-        items.put(3, goldenBoots);
-        items.put(4, diamondBoots);
-        items.put(5, goldenSword);
-        items.put(6, diamondSword);
-        items.put(7, totem);
-        items.put(8, potion);
-        items.put(9, enchantedGoldenApple);
+        items.put(0, goldPickaxe);
+        items.put(1, diamondPickaxe);
+        items.put(2, goldenBoots);
+        items.put(3, diamondBoots);
+        items.put(4, goldenSword);
+        items.put(5, diamondSword);
+        items.put(6, totem);
+        items.put(7, potion);
+        items.put(8, enchantedGoldenApple);
 
         return items;
     }
