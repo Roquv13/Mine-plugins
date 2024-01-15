@@ -25,7 +25,7 @@ public class ItemShopGui extends Item implements Listener {
 
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
-        Map<Integer, ItemStack> items = itemList();
+        Map<Integer, ItemStack> items = itemsMap();
 
         for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
             gui.setItem(entry.getKey(), entry.getValue());
@@ -36,7 +36,6 @@ public class ItemShopGui extends Item implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        Map<Integer, ItemStack> items = itemList();
 
         if (event.getView().getTitle().equals(guiName)) {
             event.setCancelled(true);

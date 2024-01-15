@@ -7,6 +7,7 @@ import org.plugins.pluginmc.utils.ChatUtil;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Item {
@@ -20,7 +21,27 @@ public class Item {
         return itemStack;
     }
 
-    public Map<Integer, ItemStack> itemList() {
+    public Map<String ,Material> materialsMap() {
+        Map<String, Material> materials = new HashMap<>();
+
+        Material goldIngot = Material.GOLD_INGOT;
+        Material diamond = Material.DIAMOND;
+        Material netherIngot = Material.NETHERITE_INGOT;
+        Material diamondSword = Material.DIAMOND_SWORD;
+        Material diamondPickaxe = Material.DIAMOND_PICKAXE;
+        Material upgradeTemplate = Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE;
+
+        materials.put("Gold Ingot" , goldIngot);
+        materials.put("Diamond" , diamond);
+        materials.put("Nether Ingot" , netherIngot);
+        materials.put("Diamond Sword" , diamondSword);
+        materials.put("Diamond Pickaxe" , diamondPickaxe);
+        materials.put("Upgrade Template" , upgradeTemplate);
+
+        return materials;
+    }
+
+    public Map<Integer, ItemStack> itemsMap() {
         Map<Integer, ItemStack> items = new HashMap<>();
 
         ItemStack goldIngot = create(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
