@@ -1,4 +1,4 @@
-package org.plugins.pluginmc.gui;
+package org.plugins.pluginmc;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
