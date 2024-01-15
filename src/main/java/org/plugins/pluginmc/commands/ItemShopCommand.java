@@ -40,7 +40,7 @@ public class ItemShopCommand implements CommandExecutor {
             return true;
         }
 
-        if (args[0] == null) {
+        if (args.length == 0) {
             isGui.openGui(player);
             return true;
         }
