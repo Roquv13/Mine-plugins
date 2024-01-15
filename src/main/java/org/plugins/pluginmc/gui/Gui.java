@@ -23,11 +23,25 @@ public class Gui extends Item implements Listener {
     public Map<Integer, ItemStack> createItems() {
         Map<Integer, ItemStack> items = new HashMap<>();
 
-        ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n10 blocks of emeralds&7.");
-        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 3", "&8>> &7Price: &6&n20 blocks of emeralds&7.");
+        ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack goldenBoots = create(Material.GOLDEN_BOOTS, "&e&SPEED 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondBoots = create(Material.DIAMOND_BOOTS, "&e&lSPEED 2", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack goldenSword = create(Material.GOLDEN_SWORD, "&e&STRENGTH 3", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&e&STRENGTH 3", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack totem = create(Material.TOTEM_OF_UNDYING, "&e&REGENERATION", "&8>> &7Price: &6&n50 coins&7.");
+        ItemStack potion = create(Material.POTION, "&e&lNIGHT VISION", "&8>> &7Price: &6&n50 coins&7.");
+        ItemStack enchantedGoldenApple = create(Material.ENCHANTED_GOLDEN_APPLE, "&e&lHEALTH BOOST", "&8>> &7Price: &6&n80 coins&7.");
 
-        items.put(3, goldPickaxe);
-        items.put(5, diamondPickaxe);
+        items.put(1, goldPickaxe);
+        items.put(2, diamondPickaxe);
+        items.put(3, goldenBoots);
+        items.put(4, diamondBoots);
+        items.put(5, goldenSword);
+        items.put(6, diamondSword);
+        items.put(7, totem);
+        items.put(8, potion);
+        items.put(9, enchantedGoldenApple);
 
         return items;
     }
