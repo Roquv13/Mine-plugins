@@ -20,26 +20,6 @@ public class ItemShopGui extends Item implements Listener {
 
     private final String guiName = ChatUtil.colorize("&6&lItem &2&lShop");
 
-    public Map<Integer, ItemStack> createItems() {
-        Map<Integer, ItemStack> items = new HashMap<>();
-
-        ItemStack goldIngot = create(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
-        ItemStack diamond = create(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ");
-        ItemStack netherIngot = create(Material.NETHERITE_INGOT, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
-        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&b&lDiamond Sword", "&cPrice: &l&a35 &l&6coins ");
-        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
-        ItemStack upgradeTemplate = create(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
-
-        items.put(0, goldIngot);
-        items.put(1, diamond);
-        items.put(2, netherIngot);
-        items.put(3, diamondSword);
-        items.put(4, diamondPickaxe);
-        items.put(5, upgradeTemplate);
-
-        return items;
-    }
-
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
         Map<Integer, ItemStack> items = createItems();
@@ -61,15 +41,38 @@ public class ItemShopGui extends Item implements Listener {
             event.setCancelled(true);
 
             if (event.getCurrentItem() != null) {
-                for (ItemStack item : items.values()) {
-                    if (event.getCurrentItem().getType() == item.getType()) {
+                ItemStack clickedItem = event.getCurrentItem();
+                Player player = (Player) event.getWhoClicked();
 
-                        Player player = (Player) event.getWhoClicked();
-
-                        player.getInventory().addItem(item);
-                    }
+                if (event.getClickedInventory() != null && event.getClickedInventory().equals(event.getView().getTopInventory())) {
+                    handleItemPurchase(clickedItem, player);
                 }
             }
         }
+    }
+
+    public void handleItemPurchase(ItemStack item, Player player) {
+        player.getInventory().addItem(item);
+        player.sendMessage(ChatUtil.colorize("&aYou purchased " + item.getItemMeta().getDisplayName()));
+    }
+    
+    public Map<Integer, ItemStack> createItems() {
+        Map<Integer, ItemStack> items = new HashMap<>();
+
+        ItemStack goldIngot = create(Material.GOLD_INGOT, "&e&lGold Ingot", "&cPrice: &l&a5 &l&6coins ");
+        ItemStack diamond = create(Material.DIAMOND, "&b&lDiamond", "&cPrice: &l&a20 &l&6coins ");
+        ItemStack netherIngot = create(Material.NETHERITE_INGOT, "&8&lNetherite", "&cPrice: &l&a40 &l&6coins ");
+        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&b&lDiamond Sword", "&cPrice: &l&a35 &l&6coins ");
+        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&b&lDiamond Pickaxe", "&cPrice: &l&a55 &l&6coins ");
+        ItemStack upgradeTemplate = create(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, "&b&lUpgrade Template", "&cPrice: &l&a80 &l&6coins ");
+
+        items.put(0, goldIngot);
+        items.put(1, diamond);
+        items.put(2, netherIngot);
+        items.put(3, diamondSword);
+        items.put(4, diamondPickaxe);
+        items.put(5, upgradeTemplate);
+
+        return items;
     }
 }
