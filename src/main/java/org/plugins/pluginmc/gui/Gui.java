@@ -27,8 +27,8 @@ public class Gui extends Item implements Listener {
         ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n20 coins&7.");
         ItemStack goldenBoots = create(Material.GOLDEN_BOOTS, "&e&SPEED 1", "&8>> &7Price: &6&n10 coins&7.");
         ItemStack diamondBoots = create(Material.DIAMOND_BOOTS, "&e&lSPEED 2", "&8>> &7Price: &6&n20 coins&7.");
-        ItemStack goldenSword = create(Material.GOLDEN_SWORD, "&e&STRENGTH 3", "&8>> &7Price: &6&n10 coins&7.");
-        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&e&STRENGTH 3", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack goldenSword = create(Material.GOLDEN_SWORD, "&e&STRENGTH 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&e&STRENGTH 2", "&8>> &7Price: &6&n20 coins&7.");
         ItemStack totem = create(Material.TOTEM_OF_UNDYING, "&e&REGENERATION", "&8>> &7Price: &6&n50 coins&7.");
         ItemStack potion = create(Material.POTION, "&e&lNIGHT VISION", "&8>> &7Price: &6&n50 coins&7.");
         ItemStack enchantedGoldenApple = create(Material.ENCHANTED_GOLDEN_APPLE, "&e&lHEALTH BOOST", "&8>> &7Price: &6&n80 coins&7.");
@@ -74,10 +74,31 @@ public class Gui extends Item implements Listener {
 
                         if (item.getType() == Material.GOLDEN_PICKAXE) {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 1));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 1!"));
                         } else if (item.getType() == Material.DIAMOND_PICKAXE) {
                             player.addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, 600, 2));
-                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 3!"));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained HASTE 2!"));
+                        } else if (item.getType() == Material.GOLDEN_BOOTS) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 1));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 1!"));
+                        }  else if (item.getType() == Material.DIAMOND_BOOTS) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained SPEED 2!"));
+                        } else if (item.getType() == Material.GOLDEN_SWORD) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 600, 1));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 1!"));
+                        } else if (item.getType() == Material.DIAMOND_SWORD) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained STRENGTH 2!"));
+                        } else if (item.getType() == Material.TOTEM_OF_UNDYING) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained REGENERATION!"));
+                        } else if (item.getType() == Material.POTION) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained NIGHT VISION!"));
+                        } else if (item.getType() == Material.ENCHANTED_GOLDEN_APPLE) {
+                            player.addPotionEffect(new PotionEffect(PotionEffectType.HEALTH_BOOST, 600, 2));
+                            player.sendMessage(ChatUtil.colorize("&aYou have gained HEALTH BOOST!"));
                         }
                     }
                 }
