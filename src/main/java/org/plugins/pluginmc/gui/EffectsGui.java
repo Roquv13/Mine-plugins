@@ -25,32 +25,6 @@ public class EffectsGui extends Item implements Listener {
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
     }
 
-    public Map<Integer, ItemStack> createItems() {
-        Map<Integer, ItemStack> items = new HashMap<>();
-
-        ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 1", "&8>> &7Price: &6&n10 coins&7.");
-        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n20 coins&7.");
-        ItemStack goldenBoots = create(Material.GOLDEN_BOOTS, "&e&lSPEED 1", "&8>> &7Price: &6&n10 coins&7.");
-        ItemStack diamondBoots = create(Material.DIAMOND_BOOTS, "&e&lSPEED 2", "&8>> &7Price: &6&n20 coins&7.");
-        ItemStack goldenSword = create(Material.GOLDEN_SWORD, "&e&lSTRENGTH 1", "&8>> &7Price: &6&n10 coins&7.");
-        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&e&lSTRENGTH 2", "&8>> &7Price: &6&n20 coins&7.");
-        ItemStack totem = create(Material.TOTEM_OF_UNDYING, "&e&lREGENERATION", "&8>> &7Price: &6&n50 coins&7.");
-        ItemStack potion = create(Material.POTION, "&e&lNIGHT VISION", "&8>> &7Price: &6&n50 coins&7.");
-        ItemStack enchantedGoldenApple = create(Material.ENCHANTED_GOLDEN_APPLE, "&e&lHEALTH BOOST", "&8>> &7Price: &6&n80 coins&7.");
-
-        items.put(0, goldPickaxe);
-        items.put(1, diamondPickaxe);
-        items.put(2, goldenBoots);
-        items.put(3, diamondBoots);
-        items.put(4, goldenSword);
-        items.put(5, diamondSword);
-        items.put(6, totem);
-        items.put(7, potion);
-        items.put(8, enchantedGoldenApple);
-
-        return items;
-    }
-
     public void openGui(Player player) {
         Inventory gui = Bukkit.createInventory(player, 9, guiName);
         Map<Integer, ItemStack> items = createItems();
@@ -83,6 +57,32 @@ public class EffectsGui extends Item implements Listener {
                 }
             }
         }
+    }
+
+    public Map<Integer, ItemStack> createItems() {
+        Map<Integer, ItemStack> items = new HashMap<>();
+
+        ItemStack goldPickaxe = create(Material.GOLDEN_PICKAXE, "&e&lHASTE 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondPickaxe = create(Material.DIAMOND_PICKAXE, "&e&lHASTE 2", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack goldenBoots = create(Material.GOLDEN_BOOTS, "&e&lSPEED 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondBoots = create(Material.DIAMOND_BOOTS, "&e&lSPEED 2", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack goldenSword = create(Material.GOLDEN_SWORD, "&e&lSTRENGTH 1", "&8>> &7Price: &6&n10 coins&7.");
+        ItemStack diamondSword = create(Material.DIAMOND_SWORD, "&e&lSTRENGTH 2", "&8>> &7Price: &6&n20 coins&7.");
+        ItemStack totem = create(Material.TOTEM_OF_UNDYING, "&e&lREGENERATION", "&8>> &7Price: &6&n50 coins&7.");
+        ItemStack potion = create(Material.POTION, "&e&lNIGHT VISION", "&8>> &7Price: &6&n50 coins&7.");
+        ItemStack enchantedGoldenApple = create(Material.ENCHANTED_GOLDEN_APPLE, "&e&lHEALTH BOOST", "&8>> &7Price: &6&n80 coins&7.");
+
+        items.put(0, goldPickaxe);
+        items.put(1, diamondPickaxe);
+        items.put(2, goldenBoots);
+        items.put(3, diamondBoots);
+        items.put(4, goldenSword);
+        items.put(5, diamondSword);
+        items.put(6, totem);
+        items.put(7, potion);
+        items.put(8, enchantedGoldenApple);
+
+        return items;
     }
 
     public void addEffect(Player player, Material itemType) {
