@@ -32,11 +32,16 @@ public final class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
+
+        //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
+        //Register events
         getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         configManager = new ConfigManager(getConfig());
 
+        //Commands
         getCommand("help").setExecutor(new HelpCommand());
         isGui = new ItemShopGui();
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
