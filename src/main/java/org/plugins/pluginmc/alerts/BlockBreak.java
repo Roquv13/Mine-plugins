@@ -25,7 +25,7 @@ public class BlockBreak implements Listener {
         if (player.isOp()) return;
 
         //Alert message
-        String diamondAlert = "Player " + (ChatColor.RED + player.getName()) + " dug up diamond ore.";
+        String diamondAlert = "Player " + ChatColor.RED + player.getName() + ChatColor.WHITE + " dug up diamond ore.";
 
         //Send to console
         getLogger().info("Player " + player.getName() + " dug up diamond ore.");
