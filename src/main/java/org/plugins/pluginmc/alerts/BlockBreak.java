@@ -1,4 +1,4 @@
-package org.plugins.pluginmc;
+package org.plugins.pluginmc.alerts;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
