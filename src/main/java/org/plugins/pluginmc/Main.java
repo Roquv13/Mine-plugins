@@ -26,6 +26,8 @@ public final class Main extends JavaPlugin implements Listener {
 
     private ItemShopGui isGui;
 
+    public static Boolean isChatEnabled = true;
+
     public static Main getInstance() {
         return instance;
     }
