@@ -9,6 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 
+import static org.bukkit.Bukkit.getLogger;
+
 public class BlockBreak implements Listener {
 
     @EventHandler
@@ -19,10 +21,18 @@ public class BlockBreak implements Listener {
 
         Player player = event.getPlayer();
 
-        for (Player playerOnline : Bukkit.getOnlinePlayers()) {
-            if (!playerOnline.isOp()) continue;
+        //Skip if player is op
+        if (player.isOp()) return;
 
-            playerOnline.sendMessage(ChatColor.GRAY + "Player " + ChatColor.AQUA + player.getName() + ChatColor.GRAY + " dug up diamond ore.");
+        //Alert message
+        String diamondAlert = "Player " + (ChatColor.RED + player.getName()) + " dug up diamond ore.";
+
+        //Send to console
+        getLogger().info("Player " + player.getName() + " dug up diamond ore.");
+
+        for (Player playerOnline : Bukkit.getOnlinePlayers()) {
+            //Information send to player
+            playerOnline.sendMessage(diamondAlert);
         }
     }
 }
