@@ -44,6 +44,7 @@ public final class Main extends JavaPlugin implements Listener {
         //Register events
         getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
+        getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
         configManager = new ConfigManager(getConfig());
 
         //Commands
@@ -52,9 +53,7 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
         effectsGui = new EffectsGui();
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
-
         getCommand("chat").setExecutor(new ChatCommand());
-        getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
 
         initConfig();
     }
