@@ -16,6 +16,8 @@ import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
+import java.util.ArrayList;
+
 public final class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
@@ -29,6 +31,8 @@ public final class Main extends JavaPlugin implements Listener {
     private ItemShopGui isGui;
 
     public static Boolean isChatEnabled = true;
+
+    public static ArrayList<Player> invisiblePlayers = new ArrayList<>();
 
     public static Main getInstance() {
         return instance;
