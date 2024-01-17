@@ -25,7 +25,7 @@ public class ChatCommand implements CommandExecutor {
                 sender.sendMessage("Chat OFF.");
 
                 break;
-            case "clear":
+            case "clear": case "cc":
                 for (Player players : Bukkit.getOnlinePlayers()){
                     for (int i = 0; i < 100; i++) {
                         players.sendMessage(" ");
@@ -35,7 +35,7 @@ public class ChatCommand implements CommandExecutor {
                 sender.sendMessage("Chat was cleared by " + sender.getName());
                 break;
             default:
-                sender.sendMessage("/chat [on/off/clear]");
+                sender.sendMessage("/chat [on/off/clear(cc)]");
         }
 
         return false;
