@@ -10,6 +10,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.plugins.pluginmc.DropChance;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import static org.bukkit.Bukkit.getLogger;
 
 public class BlockBreak implements Listener {
@@ -20,6 +22,15 @@ public class BlockBreak implements Listener {
             new DropChance(Material.EMERALD, 34),
             new DropChance(Material.SAND, 76)
     };
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event) {
+        if (event.getBlock().getType() != Material.STONE) return;
+
+        Player player = event.getPlayer();
+
+        int random = ThreadLocalRandom.current().nextInt(1, 101);
+    }
 
     @EventHandler
     public void onBlockBreakDiamond(BlockBreakEvent event) {
