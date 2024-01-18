@@ -58,11 +58,11 @@ public class DropApi {
                     .map(element -> Material.valueOf(element))
                     .collect(Collectors.toList());
         } else {
-            return getDeafaultDrops();
+            return getDefaultDrops();
         }
     }
 
-    public List<Material> getDeafaultDrops() {
+    public List<Material> getDefaultDrops() {
         DropChance[] drops = BlockBreak.drops;
         List<Material> materials = new ArrayList<>();
 
