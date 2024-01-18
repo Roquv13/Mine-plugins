@@ -11,6 +11,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.DropChance;
 
+import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -18,9 +19,9 @@ import static org.bukkit.Bukkit.getLogger;
 public class BlockBreak implements Listener {
 
     DropChance[] drops = {
+            new DropChance(Material.EMERALD, 34),
             new DropChance(Material.DIAMOND, 37),
             new DropChance(Material.COAL, 56),
-            new DropChance(Material.EMERALD, 34),
             new DropChance(Material.SAND, 76)
     };
 
@@ -33,8 +34,16 @@ public class BlockBreak implements Listener {
         int random = ThreadLocalRandom.current().nextInt(1, 101);
 
         for (DropChance drop : drops) {
+            // Console logs for random and drop chance
+            getLogger().info("Random: " + random);
+            getLogger().info("Drop chance: " + drop.getChance());
+
             if (drop.getChance() >= random) {
+                // Console logs for material
+                getLogger().info("Dropping " + drop.getMaterial().name());
+                // Drop item to player
                 player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(drop.getMaterial()));
+                break;
             }
         }
     }
