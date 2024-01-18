@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.AsyncPlayerChat;
+import org.plugins.pluginmc.events.InventoryClick;
 import org.plugins.pluginmc.events.PlayerJoin;
 import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
@@ -41,6 +42,7 @@ public final class Main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(), this);
         configManager = new ConfigManager(getConfig());
 
         //Commands
