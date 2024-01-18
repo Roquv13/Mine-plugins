@@ -11,7 +11,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.DropChance;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -33,19 +35,36 @@ public class BlockBreak implements Listener {
 
         int random = ThreadLocalRandom.current().nextInt(1, 101);
 
-        for (DropChance drop : drops) {
-            // Console logs for random and drop chance
-            getLogger().info("Random: " + random);
-            getLogger().info("Drop chance: " + drop.getChance());
+        List<Material> availableItems = new ArrayList<>();
 
-            if (drop.getChance() >= random) {
-                // Console logs for material
-                getLogger().info("Dropping " + drop.getMaterial().name());
-                // Drop item to player
-                player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(drop.getMaterial()));
-                break;
+        // Console log for random number
+        //getLogger().info("Random: " + random);
+
+        for (DropChance drop : drops) {
+            if (random <= drop.getChance()) {
+                // Console logs for drop chance of materials in ArrayList
+                //getLogger().info(drop.getMaterial().name() + " drop chance: " + drop.getChance());
+                availableItems.add(drop.getMaterial());
             }
         }
+
+        if (availableItems.isEmpty()) {
+            return;
+        } else {
+            Material randomItem = getRandomItem(availableItems);
+            // Console logs for material drop
+            //getLogger().info("Dropping " + randomItem);
+            player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(randomItem));
+        }
+    }
+
+    private static Material getRandomItem(List<Material> items) {
+
+        Random random = new Random();
+
+        int randomIndex = random.nextInt(items.size());
+
+        return items.get(randomIndex);
     }
 
     @EventHandler
