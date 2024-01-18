@@ -52,7 +52,11 @@ public class ItemShopGui extends Item implements Listener {
     }
 
     public void handleItemPurchase(ItemStack item, Player player) {
-        player.getInventory().addItem(item);
+        // Get type of item
+        Material itemAdd = item.getType();
+        // Add item without description
+        player.getInventory().addItem(new ItemStack(itemAdd));
+        // Information to player
         player.sendMessage(ChatUtil.colorize("&aYou purchased " + item.getItemMeta().getDisplayName()));
     }
 }
