@@ -32,7 +32,7 @@ public class DropApi {
         enabled.add(material);
 
         Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
-        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
+        Main.getInstance().getConfig().set(player.getUniqueId() + ".disabled", convertMaterialList(disabled));
         Main.getInstance().saveConfig();
     }
 
