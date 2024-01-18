@@ -26,16 +26,14 @@ import static org.plugins.pluginmc.events.BlockBreak.drops;
 
 public class DropGui extends Item implements Listener {
 
-    DropApi dropApi = new DropApi();
-
-    private final String guiName = ChatUtil.colorize("&6&lDrop &2&lGUI");
+    static DropApi dropApi = new DropApi();
 
     public DropGui() {
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
     }
 
-    public Inventory getInventory(Player player) {
-        Inventory inventory = Bukkit.createInventory(player, 9, guiName);
+    public static Inventory getInventory(Player player) {
+        Inventory inventory = Bukkit.createInventory(player, 9, "Drop Menu");
 
         List<Material> disabled = dropApi.getDisabledDrops(player);
 
@@ -50,29 +48,5 @@ public class DropGui extends Item implements Listener {
         }
 
         return inventory;
-    }
-
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getClickedInventory() == null) return;
-
-        Player player = (Player) event.getWhoClicked();
-
-        if (!ChatColor.stripColor(event.getView().getTitle()).equalsIgnoreCase("Drop GUI")) return;
-
-        event.setCancelled(true);
-
-        if (event.getCurrentItem() == null) return;
-
-        Material clickedType = event.getCurrentItem().getType();
-
-        if (dropApi.getDisabledDrops(player).contains(clickedType)) {
-            dropApi.enableDrop(player, clickedType);
-        } else {
-            dropApi.disableDrop(player, clickedType);
-        }
-
-        player.closeInventory();
-        player.openInventory(getInventory(player));
     }
 }
