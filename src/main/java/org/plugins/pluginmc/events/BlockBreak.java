@@ -28,7 +28,7 @@ public class BlockBreak implements Listener {
     };
 
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreakStone(BlockBreakEvent event) {
         if (event.getBlock().getType() != Material.STONE) return;
 
         Player player = event.getPlayer();
@@ -48,14 +48,14 @@ public class BlockBreak implements Listener {
             }
         }
 
-        if (availableItems.isEmpty()) {
-            return;
-        } else {
-            Material randomItem = getRandomItem(availableItems);
-            // Console logs for material drop
-            //getLogger().info("Dropping " + randomItem);
-            player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(randomItem));
-        }
+        // Stop code if list of available items is empty
+        if (availableItems.isEmpty()) return;
+
+        Material randomItem = getRandomItem(availableItems);
+        // Console logs for material drop
+        //getLogger().info("Dropping " + randomItem);
+        player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(randomItem));
+
     }
 
     private static Material getRandomItem(List<Material> items) {
