@@ -9,6 +9,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
+import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.objects.DropChance;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ import static org.bukkit.Bukkit.getLogger;
 
 public class BlockBreak implements Listener {
 
+    DropApi dropApi = new DropApi();
+
     public static DropChance[] drops = {
             new DropChance(Material.EMERALD, 34),
             new DropChance(Material.DIAMOND, 37),
@@ -29,7 +32,8 @@ public class BlockBreak implements Listener {
 
     @EventHandler
     public void onBlockBreakStone(BlockBreakEvent event) {
-        if (event.getBlock().getType() != Material.STONE) return;
+        Material material = event.getBlock().getType();
+        if (material != Material.STONE) return;
 
         Player player = event.getPlayer();
 
@@ -41,6 +45,8 @@ public class BlockBreak implements Listener {
         //getLogger().info("Random: " + random);
 
         for (DropChance drop : drops) {
+            if (dropApi.getDisabledDrops(player).contains(drop.getMaterial())) continue;
+
             if (random <= drop.getChance()) {
                 // Console logs for drop chance of materials in ArrayList
                 //getLogger().info(drop.getMaterial().name() + " drop chance: " + drop.getChance());
