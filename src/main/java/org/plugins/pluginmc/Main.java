@@ -6,10 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.alerts.BlockBreak;
-import org.plugins.pluginmc.commands.ChatCommand;
-import org.plugins.pluginmc.commands.EffectsCommand;
-import org.plugins.pluginmc.commands.HelpCommand;
-import org.plugins.pluginmc.commands.ItemShopCommand;
+import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.AsyncPlayerChat;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
@@ -58,6 +55,7 @@ public final class Main extends JavaPlugin implements Listener {
         effectsGui = new EffectsGui();
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
         getCommand("chat").setExecutor(new ChatCommand());
+        getCommand("vanish").setExecutor(new VanishComand());
 
         initConfig();
     }
