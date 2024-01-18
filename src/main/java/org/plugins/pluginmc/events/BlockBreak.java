@@ -8,13 +8,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.plugins.pluginmc.DropChance;
 
 import static org.bukkit.Bukkit.getLogger;
 
 public class BlockBreak implements Listener {
 
+    DropChance[] drops = {
+            new DropChance(Material.DIAMOND, 37),
+            new DropChance(Material.COAL, 56),
+            new DropChance(Material.EMERALD, 34),
+            new DropChance(Material.SAND, 76)
+    };
+
     @EventHandler
-    public void onBlockBreak(BlockBreakEvent event) {
+    public void onBlockBreakDiamond(BlockBreakEvent event) {
         Block block = event.getBlock();
 
         if (block.getType() != Material.DIAMOND_ORE) return;
