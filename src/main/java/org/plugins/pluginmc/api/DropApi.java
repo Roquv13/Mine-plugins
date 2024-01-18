@@ -19,6 +19,10 @@ public class DropApi {
 
         disabled.add(material);
         enabled.remove(material);
+
+        Main.getInstance().getConfig().set(player.getUniqueId() + ".disabled", convertMaterialList(disabled));
+        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
+        Main.getInstance().saveConfig();
     }
     public void enableDrop(Player player, Material material) {
         List<Material> disabled = getDisabledDrops(player);
@@ -26,6 +30,10 @@ public class DropApi {
 
         disabled.remove(material);
         enabled.add(material);
+
+        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
+        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
+        Main.getInstance().saveConfig();
     }
 
     public List<Material> getDisabledDrops(Player player) {
