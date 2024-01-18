@@ -24,6 +24,8 @@ import static org.plugins.pluginmc.events.BlockBreak.drops;
 
 public class DropGui extends Item implements Listener {
 
+    DropApi dropApi = new DropApi();
+
     private final String guiName = ChatUtil.colorize("&6&lDrop &2&lGUI");
 
     public DropGui() {
