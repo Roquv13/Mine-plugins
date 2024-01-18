@@ -1,6 +1,7 @@
 package org.plugins.pluginmc.gui;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +16,7 @@ import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.objects.DropChance;
 import org.plugins.pluginmc.utils.ChatUtil;
+import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,51 +34,45 @@ public class DropGui extends Item implements Listener {
         Bukkit.getPluginManager().registerEvents(this, Main.getInstance());
     }
 
-    public void openGui(Player player) {
-        Inventory gui = Bukkit.createInventory(player, 9, guiName);
-        Map<Integer, ItemStack> items = createItems();
+    public Inventory getInventory(Player player) {
+        Inventory inventory = Bukkit.createInventory(player, 9, guiName);
 
-        for (Map.Entry<Integer, ItemStack> entry : items.entrySet()) {
-            gui.setItem(entry.getKey(), entry.getValue());
+        List<Material> disabled = dropApi.getDisabledDrops(player);
+
+        for (int i = 0; i < drops.length; i++) {
+            DropChance dropChance = drops[i];
+            inventory.setItem(
+                    i,
+                    new ItemBuilderUtil(dropChance.getMaterial(), 1)
+                    .setName((disabled.contains(dropChance.getMaterial()) ? ChatColor.RED : ChatColor.GREEN) + dropChance.getMaterial().toString().toLowerCase())
+                    .toItemStack()
+            );
         }
 
-        player.openInventory(gui);
+        return inventory;
     }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        Map<Integer, ItemStack> items = createItems();
+        if (event.getClickedInventory() == null) return;
 
-        if (event.getView().getTitle().equals(guiName) && event.getAction() == InventoryAction.PICKUP_ALL) {
-            event.setCancelled(true); // Prevent item moving or swapping
+        Player player = (Player) event.getWhoClicked();
 
-            if (event.getCurrentItem() != null) {
-                // Check which item was clicked
-                for (ItemStack item : items.values()) {
-                    if (event.getCurrentItem().getType() == item.getType()) {
-                        Player player = (Player) event.getWhoClicked();
+        if (!ChatColor.stripColor(event.getView().getTitle()).equalsIgnoreCase("Drop GUI")) return;
 
-                        Material itemType = item.getType();
+        event.setCancelled(true);
 
-                        //addEffect(player, itemType);
-                        break;
-                    }
-                }
-            }
-        }
-    }
+        if (event.getCurrentItem() == null) return;
 
-    public Map<Integer, ItemStack> createItems() {
-        Map<Integer, ItemStack> items = new HashMap<>();
+        Material clickedType = event.getCurrentItem().getType();
 
-        int i = 0;
-        for (DropChance drop : drops) {
-            Material dropMaterial = drop.getMaterial();
-            String dropMaterialName = drop.getMaterial().name();
-            items.put(i, create(dropMaterial, dropMaterialName, dropMaterialName + " DROP ON/OFF"));
-            i++;
+        if (dropApi.getDisabledDrops(player).contains(clickedType)) {
+            dropApi.enableDrop(player, clickedType);
+        } else {
+            dropApi.disableDrop(player, clickedType);
         }
 
-        return items;
+        player.closeInventory();
+        player.openInventory(getInventory(player));
     }
 }
