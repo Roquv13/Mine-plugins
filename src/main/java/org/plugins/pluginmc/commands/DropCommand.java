@@ -16,7 +16,7 @@ public class DropCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender instanceof Player) {
             Player player = (Player) sender;
-            dropGui.openGui(player);
+            player.openInventory(dropGui.getInventory(player));
         } else {
             sender.sendMessage("Only for players");
         }
