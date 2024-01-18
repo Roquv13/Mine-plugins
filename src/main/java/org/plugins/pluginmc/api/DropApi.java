@@ -50,7 +50,7 @@ public class DropApi {
 
     }
     public List<Material> getEnabledDrops(Player player) {
-        List<String> list = Main.getInstance().getConfig().getStringList(player.getUniqueId() + ".enabled")
+        List<String> list = Main.getInstance().getConfig().getStringList(player.getUniqueId() + ".enabled");
 
         if (list != null) {
             return list
