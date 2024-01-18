@@ -20,7 +20,7 @@ import static org.bukkit.Bukkit.getLogger;
 
 public class BlockBreak implements Listener {
 
-    DropChance[] drops = {
+    public static DropChance[] drops = {
             new DropChance(Material.EMERALD, 34),
             new DropChance(Material.DIAMOND, 37),
             new DropChance(Material.COAL, 56),

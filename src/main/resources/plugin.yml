@@ -34,6 +34,12 @@ commands:
     permission: plugin-mc.vanish
     permission-message: You don't have permission to use /vanish
 
+  drop:
+    description: Enable or disable drop
+    usage: /drop
+    permission: plugin-mc.drop
+    permission-message: You don't have permission to use /drop
+
 permissions:
   help:
     description: Allows you to get infomations about plugin

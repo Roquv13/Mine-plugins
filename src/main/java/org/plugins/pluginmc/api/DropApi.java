@@ -9,8 +9,6 @@ import java.util.stream.Collectors;
 
 public class DropApi {
 
-
-
     public List<Material> getDisabledDrops(Player player) {
         return Main.getInstance().getConfig().getStringList(player.getUniqueId() + ".disabled")
                 .stream()

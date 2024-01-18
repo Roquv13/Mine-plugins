@@ -7,6 +7,7 @@ import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.AsyncPlayerChat;
 import org.plugins.pluginmc.events.PlayerJoin;
+import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
@@ -21,9 +22,11 @@ public final class Main extends JavaPlugin implements Listener {
 
     private String name = getDescription().getName();
 
+    private ItemShopGui isGui;
+
     private EffectsGui effectsGui;
 
-    private ItemShopGui isGui;
+    private DropGui dropGui;
 
     public static Boolean isChatEnabled = true;
 
@@ -54,6 +57,8 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
         getCommand("chat").setExecutor(new ChatCommand());
         getCommand("vanish").setExecutor(new VanishComand());
+
+        getCommand("drop").setExecutor(new DropCommand(dropGui));
 
         initConfig();
     }
