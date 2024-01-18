@@ -6,77 +6,62 @@ import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.objects.DropChance;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class DropApi {
 
-    public void disableDrop(Player player, Material material) {
+    private static final String CONFIG_PATH = ".disabled";
+    private static final String ENABLED_PATH = ".enabled";
+
+    public void toggleDrop(Player player, Material material, boolean enable) {
         List<Material> disabled = getDisabledDrops(player);
         List<Material> enabled = getEnabledDrops(player);
 
-        disabled.add(material);
-        enabled.remove(material);
+        if (enable) {
+            disabled.remove(material);
+            enabled.add(material);
+        } else {
+            disabled.add(material);
+            enabled.remove(material);
+        }
 
-        Main.getInstance().getConfig().set(player.getUniqueId() + ".disabled", convertMaterialList(disabled));
-        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
-        Main.getInstance().saveConfig();
-    }
-    public void enableDrop(Player player, Material material) {
-        List<Material> disabled = getDisabledDrops(player);
-        List<Material> enabled = getEnabledDrops(player);
-
-        disabled.remove(material);
-        enabled.add(material);
-
-        Main.getInstance().getConfig().set(player.getUniqueId() + ".enabled", convertMaterialList(enabled));
-        Main.getInstance().getConfig().set(player.getUniqueId() + ".disabled", convertMaterialList(disabled));
-        Main.getInstance().saveConfig();
+        updateConfig(player, CONFIG_PATH, disabled);
+        updateConfig(player, ENABLED_PATH,enabled);
     }
 
     public List<Material> getDisabledDrops(Player player) {
-        List<String> list = Main.getInstance().getConfig().getStringList(player.getUniqueId() + ".disabled");
-
-        if (list != null) {
-            return list
-                    .stream()
-                    .map(element -> Material.valueOf(element))
-                    .collect(Collectors.toList());
-        } else {
-            return Collections.emptyList();
-        }
-
+        return getConfigList(player, CONFIG_PATH);
     }
-    public List<Material> getEnabledDrops(Player player) {
-        List<String> list = Main.getInstance().getConfig().getStringList(player.getUniqueId() + ".enabled");
 
-        if (list != null) {
-            return list
-                    .stream()
-                    .map(element -> Material.valueOf(element))
-                    .collect(Collectors.toList());
-        } else {
-            return getDefaultDrops();
-        }
+    public List<Material> getEnabledDrops(Player player) {
+        return getConfigList(player, ENABLED_PATH, getDefaultDrops());
+    }
+
+    private List<Material> getConfigList(Player player, String path) {
+        List<String> list = Main.getInstance().getConfig().getStringList(player.getUniqueId() + path);
+        return (list != null) ? list.stream().map(Material::valueOf).collect(Collectors.toList()) : Collections.emptyList();
+    }
+
+    private List<Material> getConfigList(Player player, String path, List<Material> defaultValue) {
+        List<Material> list = getConfigList(player, path);
+        return (list.isEmpty()) ? defaultValue : list;
+    }
+
+    private void updateConfig(Player player, String path, List<Material> materials) {
+        Main.getInstance().getConfig().set(player.getUniqueId() + path, convertMaterialList(materials));
+        Main.getInstance().saveConfig();
     }
 
     public List<Material> getDefaultDrops() {
-        DropChance[] drops = BlockBreak.drops;
-        List<Material> materials = new ArrayList<>();
-
-        for (DropChance drop : drops) {
-            materials.add(drop.getMaterial());
-        }
-
-        return materials;
+        return Arrays.stream(BlockBreak.drops).map(DropChance::getMaterial).collect(Collectors.toList());
     }
 
     public List<String> convertMaterialList(List<Material> list) {
-        return list
-                .stream()
-                .map(element -> element.toString())
-                .collect(Collectors.toList());
+        return list.stream().map(Enum::toString).collect(Collectors.toList());
     }
 }
