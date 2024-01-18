@@ -20,13 +20,7 @@ public final class Main extends JavaPlugin implements Listener {
 
     private static Main instance;
 
-    private String name = getDescription().getName();
-
-    private ItemShopGui isGui;
-
-    private EffectsGui effectsGui;
-
-    private DropGui dropGui;
+    private final String name = getDescription().getName();
 
     public static Boolean isChatEnabled = true;
 
@@ -51,13 +45,14 @@ public final class Main extends JavaPlugin implements Listener {
 
         //Commands
         getCommand("help").setExecutor(new HelpCommand());
-        isGui = new ItemShopGui();
+        ItemShopGui isGui = new ItemShopGui();
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
-        effectsGui = new EffectsGui();
+        EffectsGui effectsGui = new EffectsGui();
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
         getCommand("chat").setExecutor(new ChatCommand());
         getCommand("vanish").setExecutor(new VanishComand());
-
+        // Add new Gui
+        DropGui dropGui = new DropGui();
         getCommand("drop").setExecutor(new DropCommand(dropGui));
 
         initConfig();

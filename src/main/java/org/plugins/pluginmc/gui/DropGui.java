@@ -71,7 +71,7 @@ public class DropGui extends Item implements Listener {
         for (DropChance drop : drops) {
             Material dropMaterial = drop.getMaterial();
             String dropMaterialName = drop.getMaterial().name();
-            items.put(i, create(dropMaterial, dropMaterialName, "DROP ON/OFF"));
+            items.put(i, create(dropMaterial, dropMaterialName, dropMaterialName + " DROP ON/OFF"));
             i++;
         }
 
