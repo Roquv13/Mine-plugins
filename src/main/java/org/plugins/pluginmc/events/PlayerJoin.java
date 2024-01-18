@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.plugins.pluginmc.Main;
+import org.plugins.pluginmc.utils.ChatUtil;
 
 public class PlayerJoin implements Listener {
 
@@ -15,5 +16,7 @@ public class PlayerJoin implements Listener {
         for (Player invisiblePlayer : Main.invisiblePlayers) {
             player.hidePlayer(invisiblePlayer);
         }
+
+        player.sendMessage(ChatUtil.colorize(Main.configManager.getJoinMessage().replace("{PLAYER}", player.getName())));
     }
 }

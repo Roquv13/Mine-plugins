@@ -8,6 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.alerts.BlockBreak;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.AsyncPlayerChat;
+import org.plugins.pluginmc.events.PlayerJoin;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
@@ -17,11 +18,11 @@ import java.util.ArrayList;
 
 public final class Main extends JavaPlugin implements Listener {
 
+    public static ConfigManager configManager;
+
     private static Main instance;
 
     private String name = getDescription().getName();
-
-    private ConfigManager configManager;
 
     private EffectsGui effectsGui;
 
@@ -43,7 +44,7 @@ public final class Main extends JavaPlugin implements Listener {
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
         //Register events
-        getServer().getPluginManager().registerEvents(this, this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
         configManager = new ConfigManager(getConfig());
@@ -64,12 +65,6 @@ public final class Main extends JavaPlugin implements Listener {
     public void onDisable() {
         this.getLogger().info(String.format("Plugin \"%s\" stopped.", name));
         saveConfig();
-    }
-
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        player.sendMessage(ChatUtil.colorize(configManager.getJoinMessage().replace("{PLAYER}", player.getName())));
     }
 
     private void initConfig() {

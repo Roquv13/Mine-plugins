@@ -33,7 +33,7 @@ commands:
     usage: /vanish
     permission: plugin-mc.vanish
     permission-message: You don't have permission to use /vanish
-    
+
 permissions:
   help:
     description: Allows you to get infomations about plugin
