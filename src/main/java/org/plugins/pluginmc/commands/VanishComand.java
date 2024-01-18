@@ -24,6 +24,15 @@ public class VanishComand implements CommandExecutor {
             Main.invisiblePlayers.remove(player);
 
             player.sendMessage("You are visible!");
+        } else {
+            for (Player players : Bukkit.getOnlinePlayers()) {
+                players.hidePlayer(player);
+            }
+            Main.invisiblePlayers.add(player);
+
+            player.sendMessage("You are invisible.");
         }
+
+        return false;
     }
 }
