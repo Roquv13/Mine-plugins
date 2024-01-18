@@ -1,4 +1,4 @@
-package org.plugins.pluginmc;
+package org.plugins.pluginmc.objects;
 
 import org.bukkit.Material;
 
