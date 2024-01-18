@@ -53,7 +53,6 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
         getCommand("chat").setExecutor(new ChatCommand());
         getCommand("vanish").setExecutor(new VanishComand());
-        // Add new Gui
         DropGui dropGui = new DropGui();
         getCommand("drop").setExecutor(new DropCommand(dropGui));
 
