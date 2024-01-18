@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.DropChance;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -30,6 +31,12 @@ public class BlockBreak implements Listener {
         Player player = event.getPlayer();
 
         int random = ThreadLocalRandom.current().nextInt(1, 101);
+
+        for (DropChance drop : drops) {
+            if (drop.getChance() >= random) {
+                player.getWorld().dropItemNaturally(player.getLocation(), new ItemStack(drop.getMaterial()));
+            }
+        }
     }
 
     @EventHandler
