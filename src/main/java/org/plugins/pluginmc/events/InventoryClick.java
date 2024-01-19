@@ -1,9 +1,6 @@
 package org.plugins.pluginmc.events;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,6 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.util.StructureSearchResult;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.WarpGui;
@@ -78,19 +76,30 @@ public class InventoryClick implements Listener {
                 player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
                 break;
             case STONE_HOE:
-                Location village = Bukkit.getWorld("world").locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, false).getLocation();
-                int x = village.getBlockX();
-                int z = village.getBlockZ();
-                // Get Y of village and add 1 to teleport on block
-                double y = Bukkit.getWorld("world").getHighestBlockAt(x, z).getY() + 1;
+                World world = Bukkit.getWorld("world");
+                if (world != null) {
+                    StructureSearchResult villageResult = world.locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, false);
 
-                player.sendMessage(ChatColor.AQUA + "Location of village || " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
-                player.teleport(new Location(Bukkit.getWorld("world"), x, y, z));
+                    if (villageResult != null) {
+                        int x = villageResult.getLocation().getBlockX();
+                        int z = villageResult.getLocation().getBlockZ();
+                        // Get Y of village and add 1 to teleport on block
+                        double y = world.getHighestBlockAt(x, z).getY() + 1;
+
+                        player.sendMessage(ChatColor.AQUA + "Location of village || " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
+                        player.teleport(new Location(world, x, y, z));
+                    } else {
+                        player.sendMessage(ChatColor.RED + "No village found!");
+                    }
+                } else {
+                    player.sendMessage(ChatColor.RED + "World not found!");
+                }
                 break;
             default:
-                player.sendMessage(ChatColor.RED + "NO LOCATION!");
+                player.sendMessage(ChatColor.RED + "No Warp!");
         }
     }
+
 }
 
 
