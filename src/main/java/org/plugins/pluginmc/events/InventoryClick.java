@@ -19,7 +19,7 @@ public class InventoryClick implements Listener {
     DropApi dropApi = new DropApi();
 
     @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
+    public void onInventoryClickDrop(InventoryClickEvent event) {
         if (event.getClickedInventory() == null || event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) {
             return;
         }
