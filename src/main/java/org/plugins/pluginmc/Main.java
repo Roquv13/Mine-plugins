@@ -55,6 +55,7 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("vanish").setExecutor(new VanishComand());
         DropGui dropGui = new DropGui();
         getCommand("drop").setExecutor(new DropCommand(dropGui));
+        getCommand("warp").setExecutor(new WarpCommand());
 
         initConfig();
     }

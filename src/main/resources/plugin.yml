@@ -1,7 +1,7 @@
 name: plugin-mc
 version: 1.0
 main: org.plugins.pluginmc.Main
-api-version: '1.20'
+api-version: '1.20.4'
 author: roquv13
 commands:
   help:
@@ -39,6 +39,12 @@ commands:
     usage: /drop
     permission: plugin-mc.drop
     permission-message: You don't have permission to use /drop
+
+  warp:
+    description: Open warp Gui
+    usage: /warp
+    permission: plugin-mc.warp
+    permission-message: You don't have permission to use /warp
 
 permissions:
   help:
