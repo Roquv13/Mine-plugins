@@ -78,9 +78,9 @@ public class InventoryClick implements Listener {
             case STONE_HOE:
                 World world = Bukkit.getWorld("world");
                 if (world != null) {
-                    StructureSearchResult villageResult = world.locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, false);
+                    StructureSearchResult villageResult = world.locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 201, false);
 
-                    if (villageResult != null) {
+                    if (villageResult != null && villageResult.getStructure() == Structure.VILLAGE_PLAINS) {
                         int x = villageResult.getLocation().getBlockX();
                         int z = villageResult.getLocation().getBlockZ();
                         // Get Y of village and add 1 to teleport on block
@@ -89,16 +89,17 @@ public class InventoryClick implements Listener {
                         player.sendMessage(ChatColor.AQUA + "Location of village || " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
                         player.teleport(new Location(world, x, y, z));
                     } else {
-                        player.sendMessage(ChatColor.RED + "No village found!");
+                        player.sendMessage(ChatColor.RED + "No village found or invalid structure type!");
                     }
                 } else {
                     player.sendMessage(ChatColor.RED + "World not found!");
                 }
                 break;
             default:
-                player.sendMessage(ChatColor.RED + "No Warp!");
+                player.sendMessage(ChatColor.RED + "NO LOCATION!");
         }
     }
+
 
 }
 
