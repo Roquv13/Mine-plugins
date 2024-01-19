@@ -84,8 +84,9 @@ public class InventoryClick implements Listener {
                 // Get Y of village and add 1 to teleport on block
                 double y = Bukkit.getWorld("world").getHighestBlockAt(x, z).getY() + 1;
 
-                player.sendMessage(ChatColor.AQUA + "Location of village|| " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
+                player.sendMessage(ChatColor.AQUA + "Location of village || " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
                 player.teleport(new Location(Bukkit.getWorld("world"), x, y, z));
+                break;
             default:
                 player.sendMessage(ChatColor.RED + "NO LOCATION!");
         }
