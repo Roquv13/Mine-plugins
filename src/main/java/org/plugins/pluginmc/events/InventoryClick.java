@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.generator.structure.Structure;
 import org.bukkit.inventory.Inventory;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.gui.DropGui;
@@ -62,11 +63,7 @@ public class InventoryClick implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        Inventory clicked = event.getClickedInventory();
-
-        Inventory warp = WarpGui.getInventory(player);
-
-        if (clicked.getHolder() != warp.getHolder()) return;
+        if (!event.getView().getTitle().equalsIgnoreCase("Warps")) return;
 
         event.setCancelled(true);
 
@@ -80,6 +77,14 @@ public class InventoryClick implements Listener {
             case OAK_WOOD:
                 player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
                 break;
+            case STONE_HOE:
+                Location village = Bukkit.getWorld("world").locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, true).getLocation();
+                double x = village.getX();
+                double y = village.getY();
+                double z = village.getZ();
+
+                player.sendMessage(ChatColor.AQUA + "Location of village|| " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
+                player.teleport(new Location(Bukkit.getWorld("world"), x, y, z));
             default:
                 player.sendMessage(ChatColor.RED + "NO LOCATION!");
         }
