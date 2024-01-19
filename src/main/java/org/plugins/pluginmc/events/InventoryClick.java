@@ -78,10 +78,11 @@ public class InventoryClick implements Listener {
                 player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
                 break;
             case STONE_HOE:
-                Location village = Bukkit.getWorld("world").locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, true).getLocation();
-                double x = village.getX();
-                double y = village.getY();
-                double z = village.getZ();
+                Location village = Bukkit.getWorld("world").locateNearestStructure(player.getLocation(), Structure.VILLAGE_PLAINS, 1, false).getLocation();
+                int x = village.getBlockX();
+                int z = village.getBlockZ();
+                // Get Y of village and add 1 to teleport on block
+                double y = Bukkit.getWorld("world").getHighestBlockAt(x, z).getY() + 1;
 
                 player.sendMessage(ChatColor.AQUA + "Location of village|| " + ChatColor.RED + "x: " + x + " y: " + y + " z: " + z);
                 player.teleport(new Location(Bukkit.getWorld("world"), x, y, z));
