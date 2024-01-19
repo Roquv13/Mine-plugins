@@ -5,11 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 import org.bukkit.event.inventory.InventoryType;
-import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.objects.DropChance;
@@ -45,11 +43,7 @@ public class InventoryClick implements Listener {
         // Check if the clicked item is part of your GUI items
         for (DropChance dropChance : drops) {
             if (dropChance.getMaterial() == clickedType) {
-                if (dropApi.getDisabledDrops(player).contains(clickedType)) {
-                    dropApi.enableDrop(player, clickedType);
-                } else {
-                    dropApi.disableDrop(player, clickedType);
-                }
+                dropApi.toggleDrop(player, clickedType, dropApi.getDisabledDrops(player).contains(clickedType));
 
                 player.closeInventory();
                 player.openInventory(DropGui.getInventory(player));

@@ -6,8 +6,6 @@ import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.objects.DropChance;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
