@@ -81,7 +81,7 @@ public class InventoryClick implements Listener {
                 player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
                 break;
             default:
-                return;
+                player.sendMessage(ChatColor.RED + "NO LOCATION");
         }
     }
 }
