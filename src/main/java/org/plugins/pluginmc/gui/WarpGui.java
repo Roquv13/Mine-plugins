@@ -22,8 +22,8 @@ public class WarpGui {
 
         inventory.setItem(
                 5,
-                new ItemBuilderUtil(Material.DIAMOND_SWORD, 1)
-                        .setName(ChatColor.AQUA + "Mob Grinder")
+                new ItemBuilderUtil(Material.OBSIDIAN, 1)
+                        .setName(ChatColor.BLACK + "Nether Portal")
                         .toItemStack()
         );
 

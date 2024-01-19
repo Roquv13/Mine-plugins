@@ -1,6 +1,8 @@
 package org.plugins.pluginmc.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -70,11 +72,13 @@ public class InventoryClick implements Listener {
 
         switch (event.getCurrentItem().getType()) {
             case ENCHANTING_TABLE:
-                
+                player.teleport(new Location(Bukkit.getWorld("world"), 433.5, 78, 271.5));
                 break;
-            case DIAMOND_SWORD:
+            case OBSIDIAN:
+                player.teleport(new Location(Bukkit.getWorld("world"), 369.5, 71, 178.5));
                 break;
             case OAK_WOOD:
+                player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
                 break;
             default:
                 return;
