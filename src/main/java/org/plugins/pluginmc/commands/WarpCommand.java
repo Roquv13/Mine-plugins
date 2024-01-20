@@ -15,7 +15,7 @@ import java.util.LinkedHashMap;
 
 public class WarpCommand implements CommandExecutor {
 
-    WarpList warpList = new WarpList();
+    private final WarpList warpList = new WarpList();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
