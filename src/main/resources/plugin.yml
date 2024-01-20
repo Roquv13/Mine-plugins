@@ -42,7 +42,7 @@ commands:
 
   warp:
     description: Open warp Gui
-    usage: /warp
+    usage: /warp or /warp [add/del] [warp name] or /warp list
     permission: plugin-mc.warp
     permission-message: You don't have permission to use /warp
 
