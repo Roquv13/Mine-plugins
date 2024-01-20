@@ -8,6 +8,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.gui.WarpGui;
 import org.plugins.pluginmc.objects.WarpList;
 
@@ -29,7 +31,8 @@ public class WarpCommand implements CommandExecutor {
         LinkedHashMap<String, Location> warps = warpList.loadWarps();
 
         if (args.length == 0) {
-            player.openInventory(WarpGui.getInventory(player));
+            Inventory playerInv = WarpGui.getInventory(player);
+            player.openInventory(playerInv);
             return true;
         } else if (args.length == 1) {
             if (warps.isEmpty()) {
