@@ -67,11 +67,7 @@ public class WarpCommand implements CommandExecutor {
 
                 warps.put(name, location);
 
-                config.set("warps." + name + ".world", location.getWorld().getName());
-                config.set("warps." + name + ".x", location.getX());
-                config.set("warps." + name + ".y", location.getY());
-                config.set("warps." + name + ".z", location.getZ());
-                saveConfig();
+                addWarp(name, location);
 
                 player.sendMessage(ChatColor.GREEN + "Warp " + name +  " added.");
             } else if (args[0].equalsIgnoreCase("del")) {
@@ -114,6 +110,14 @@ public class WarpCommand implements CommandExecutor {
         }
 
         return warps;
+    }
+
+    public void addWarp(String name, Location location) {
+        config.set("warps." + name + ".world", location.getWorld().getName());
+        config.set("warps." + name + ".x", location.getX());
+        config.set("warps." + name + ".y", location.getY());
+        config.set("warps." + name + ".z", location.getZ());
+        saveConfig();
     }
 
     private void saveConfig() {
