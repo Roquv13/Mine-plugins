@@ -1,5 +1,6 @@
 package org.plugins.pluginmc.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
@@ -33,9 +34,16 @@ public class WarpCommand implements CommandExecutor {
            }
        } else if (args.length == 2) {
            if (args[0].equalsIgnoreCase("add")) {
+                String name = args[1];
+                Location location = player.getLocation();
 
+                warps.put(name, location);
+                player.sendMessage( ChatColor.GREEN + "Warp " + name +  " added.");
            } else if (args[0].equalsIgnoreCase("del")) {
+                String name = args[1];
 
+                warps.remove(name);
+                player.sendMessage(ChatColor.RED + "Warp " + name +  " deleted.");
            }
        } else {
            player.sendMessage("This argument doesn't exists. Try");
