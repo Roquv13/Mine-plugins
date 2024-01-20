@@ -8,11 +8,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.generator.structure.Structure;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.util.StructureSearchResult;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.gui.DropGui;
-import org.plugins.pluginmc.gui.WarpGui;
 import org.plugins.pluginmc.objects.DropChance;
 
 import static org.plugins.pluginmc.events.BlockBreak.drops;
