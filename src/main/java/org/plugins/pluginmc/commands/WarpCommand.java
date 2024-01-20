@@ -14,8 +14,10 @@ public class WarpCommand implements CommandExecutor {
 
        Player player = (Player) sender;
 
-       player.openInventory(WarpGui.getInventory(player));
-
+       if (args.length == 0) {
+           player.openInventory(WarpGui.getInventory(player));
+       }
+       
        return false;
     }
 }
