@@ -16,8 +16,20 @@ public class WarpCommand implements CommandExecutor {
 
        if (args.length == 0) {
            player.openInventory(WarpGui.getInventory(player));
+       } else if (args.length == 1) {
+           if (args[0].equalsIgnoreCase("list")) {
+
+           }
+       } else if (args.length == 2) {
+           if (args[0].equalsIgnoreCase("add")) {
+
+           } else if (args[0].equalsIgnoreCase("del")) {
+
+           }
+       } else {
+           player.sendMessage("This argument doesn't exists. Try");
        }
-       
+
        return false;
     }
 }
