@@ -12,10 +12,10 @@ public class WarpCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
        if (sender instanceof ConsoleCommandSender) return true;
 
-        Player player = (Player) sender;
+       Player player = (Player) sender;
 
-        player.openInventory(WarpGui.getInventory(player));
+       player.openInventory(WarpGui.getInventory(player));
 
-        return false;
+       return false;
     }
 }
