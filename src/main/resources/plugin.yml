@@ -60,10 +60,8 @@ permissions:
     default: true
 
   chat:
-    description: Chat ON/OFF/CLEAR
-    usage: /chat on/off/clear
-    permission: plugin-mc.chat
-    permission-message: You don't have permission to use /chat
+    description: Allows you to turn on/off chat
+    default: true
 
   vanish:
     description: Allows you to use hide you

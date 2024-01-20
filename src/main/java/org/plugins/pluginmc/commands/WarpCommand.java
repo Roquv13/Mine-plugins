@@ -35,7 +35,6 @@ public class WarpCommand implements CommandExecutor {
 
         if (args.length == 0) {
             player.openInventory(WarpGui.getInventory(player));
-            return true;
         } else if (args.length == 1) {
             if ((!warps.isEmpty()) && warps.containsKey(args[0])) {
                 Location location = warps.get(args[0]);
@@ -48,8 +47,6 @@ public class WarpCommand implements CommandExecutor {
             } else {
                 player.sendMessage("Warp list is empty.");
             }
-
-            return true;
         } else if (args.length == 2) {
             if (args[0].equalsIgnoreCase("add")) {
                 String name = args[1];
@@ -75,13 +72,11 @@ public class WarpCommand implements CommandExecutor {
 
                 player.sendMessage(ChatColor.RED + "Warp " + name +  " deleted.");
             }
-
-            return true;
         } else {
             player.sendMessage("This argument doesn't exist.");
         }
 
-        return false;
+        return true;
     }
 
     private LinkedHashMap<String, Location> loadWarps() {
