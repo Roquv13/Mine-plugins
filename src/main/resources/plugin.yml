@@ -58,3 +58,21 @@ permissions:
   effects:
     description: Allows you to use effects given to player
     default: true
+
+  chat:
+    description: Chat ON/OFF/CLEAR
+    usage: /chat on/off/clear
+    permission: plugin-mc.chat
+    permission-message: You don't have permission to use /chat
+
+  vanish:
+    description: Allows you to use hide you
+    default: true
+
+  drop:
+    description: Allows you to change drops of items when you dig up
+    default: true
+
+  warp:
+    description: Allows you to use teleport to locations
+    default: true
