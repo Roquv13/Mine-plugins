@@ -8,11 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.plugins.pluginmc.Item;
+import org.plugins.pluginmc.objects.Item;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ItemShopGui extends Item implements Listener {
