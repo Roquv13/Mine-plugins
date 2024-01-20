@@ -7,23 +7,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.plugins.pluginmc.gui.WarpGui;
+import org.plugins.pluginmc.objects.WarpList;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class WarpCommand implements CommandExecutor {
-    private YamlConfiguration config;
 
-    public WarpCommand() {
-        File configFile = new File("plugins/plugin-mc/warps.yml");
-        config = YamlConfiguration.loadConfiguration(configFile);
-    }
+    WarpList warpList = new WarpList();
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -34,7 +26,7 @@ public class WarpCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        LinkedHashMap<String, Location> warps = loadWarps();
+        LinkedHashMap<String, Location> warps = warpList.loadWarps();
 
         if (args.length == 0) {
             player.openInventory(WarpGui.getInventory(player));
@@ -67,7 +59,7 @@ public class WarpCommand implements CommandExecutor {
 
                 warps.put(name, location);
 
-                addWarp(name, location);
+                warpList.addWarp(name, location);
 
                 player.sendMessage(ChatColor.GREEN + "Warp " + name +  " added.");
             } else if (args[0].equalsIgnoreCase("del")) {
@@ -76,8 +68,8 @@ public class WarpCommand implements CommandExecutor {
                 warps.remove(name);
 
                 // Delete warp from config
-                config.set("warps." + name, null);
-                saveConfig();
+                warpList.config.set("warps." + name, null);
+                warpList.saveConfig();
 
                 player.sendMessage(ChatColor.RED + "Warp " + name +  " deleted.");
             }
@@ -86,45 +78,6 @@ public class WarpCommand implements CommandExecutor {
         } else {
             player.sendMessage("This argument doesn't exist.");
             return false;
-        }
-    }
-
-    private LinkedHashMap<String, Location> loadWarps() {
-        LinkedHashMap<String, Location> warps = new LinkedHashMap<>();
-
-        ConfigurationSection warpsSection = config.getConfigurationSection("warps");
-        if (warpsSection != null) {
-            Map<String, Object> warpsData = warpsSection.getValues(false);
-
-            for (String name : warpsData.keySet()) {
-                ConfigurationSection warpData = warpsSection.getConfigurationSection(name);
-
-                String worldName = warpData.getString("world");
-                double x = warpData.getDouble("x");
-                double y = warpData.getDouble("y");
-                double z = warpData.getDouble("z");
-
-                Location location = new Location(Bukkit.getWorld(worldName), x, y, z);
-                warps.put(name, location);
-            }
-        }
-
-        return warps;
-    }
-
-    public void addWarp(String name, Location location) {
-        config.set("warps." + name + ".world", location.getWorld().getName());
-        config.set("warps." + name + ".x", location.getX());
-        config.set("warps." + name + ".y", location.getY());
-        config.set("warps." + name + ".z", location.getZ());
-        saveConfig();
-    }
-
-    private void saveConfig() {
-        try {
-            config.save(new File("plugins/plugin-mc/warps.yml"));
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
