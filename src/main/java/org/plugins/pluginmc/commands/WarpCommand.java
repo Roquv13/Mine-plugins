@@ -26,11 +26,17 @@ public class WarpCommand implements CommandExecutor {
         if (args.length == 0) {
            player.openInventory(WarpGui.getInventory(player));
        } else if (args.length == 1) {
-           if (args[0].equalsIgnoreCase("list")) {
+           if ((!warps.isEmpty()) && warps.containsKey(args[0])) {
+               Location location = warps.get(args[0]);
+
+               player.teleport(new Location(Bukkit.getWorld("world"), location.getX(), location.getY(), location.getZ()));
+           } else if ((!warps.isEmpty()) && args[0].equalsIgnoreCase("list")) {
                player.sendMessage(ChatColor.DARK_GREEN + "List of warps:");
                for (String name : warps.keySet()) {
                    player.sendMessage(ChatColor.GREEN + name);
                }
+           } else {
+                player.sendMessage("Warp list is empty.");
            }
        } else if (args.length == 2) {
            if (args[0].equalsIgnoreCase("add")) {
