@@ -6,7 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
-import org.plugins.pluginmc.Item;
+import org.plugins.pluginmc.objects.Item;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.objects.DropChance;

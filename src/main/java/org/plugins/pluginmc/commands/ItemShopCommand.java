@@ -7,13 +7,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.plugins.pluginmc.Item;
+import org.plugins.pluginmc.objects.Item;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ItemShopCommand extends Item implements CommandExecutor {

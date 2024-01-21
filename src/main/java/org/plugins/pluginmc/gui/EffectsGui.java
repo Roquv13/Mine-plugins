@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.plugins.pluginmc.Item;
+import org.plugins.pluginmc.objects.Item;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 

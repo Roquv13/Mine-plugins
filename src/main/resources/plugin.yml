@@ -42,7 +42,7 @@ commands:
 
   warp:
     description: Open warp Gui
-    usage: /warp
+    usage: /warp or /warp [add/del] [warp name] or /warp list
     permission: plugin-mc.warp
     permission-message: You don't have permission to use /warp
 
@@ -57,4 +57,20 @@ permissions:
 
   effects:
     description: Allows you to use effects given to player
+    default: true
+
+  chat:
+    description: Allows you to turn on/off chat
+    default: true
+
+  vanish:
+    description: Allows you to use hide you
+    default: true
+
+  drop:
+    description: Allows you to change drops of items when you dig up
+    default: true
+
+  warp:
+    description: Allows you to use teleport to locations
     default: true
