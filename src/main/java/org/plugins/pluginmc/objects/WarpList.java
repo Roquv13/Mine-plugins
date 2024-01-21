@@ -2,14 +2,12 @@ package org.plugins.pluginmc.objects;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +16,7 @@ public class WarpList {
 
     public YamlConfiguration config;
     public LinkedHashMap<String, Location> warpsGui = new LinkedHashMap<>();
+    public List<String> warpNames = new ArrayList<>();
 
     public WarpList() {
         File configFile = new File("plugins/plugin-mc/warps.yml");
@@ -25,9 +24,14 @@ public class WarpList {
 
         String worldName = "world";
 
-        warpsGui.put("Enchants", getLocation(worldName, 433.5, 78, 271.5));
-        warpsGui.put("Nether Portal", getLocation(worldName, 369.5, 71, 178.5));
-        warpsGui.put("Oak Wood", getLocation(worldName, 485.5, 68, 295.5));
+        warpNames.add(0, "Enchants");
+        warpNames.add(1, "Nether Portal");
+        warpNames.add(2, "Oak Wood");
+        warpNames.add(3, "Villagers");
+
+        warpsGui.put(warpNames.get(0), getLocation(worldName, 433.5, 78, 271.5));
+        warpsGui.put(warpNames.get(1), getLocation(worldName, 369.5, 71, 178.5));
+        warpsGui.put(warpNames.get(2), getLocation(worldName, 485.5, 68, 295.5));
     }
 
     public LinkedHashMap<String, Location> loadWarps() {
