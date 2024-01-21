@@ -66,15 +66,17 @@ public class InventoryClick implements Listener {
 
         event.setCancelled(true);
 
-        switch (event.getCurrentItem().getType()) {
+        Material eventMaterial = event.getCurrentItem().getType();
+
+        switch (eventMaterial) {
             case ENCHANTING_TABLE:
-                player.teleport(warpList.warpsGui.get(0));
+                player.teleport(warpList.warpsGui.get("Enchants"));
                 break;
             case OBSIDIAN:
-                player.teleport(new Location(Bukkit.getWorld("world"), 369.5, 71, 178.5));
+                player.teleport(warpList.warpsGui.get("Nether Portal"));
                 break;
             case OAK_WOOD:
-                player.teleport(new Location(Bukkit.getWorld("world"), 485.5, 68, 295.5));
+                player.teleport(warpList.warpsGui.get("Oak Wood"));
                 break;
             case STONE_HOE:
                 World world = Bukkit.getWorld("world");

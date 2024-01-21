@@ -17,7 +17,7 @@ import java.util.Map;
 public class WarpList {
 
     public YamlConfiguration config;
-    public LinkedHashMap<Material, HashMap<String, Location>> warpsGui = new LinkedHashMap<>();
+    public LinkedHashMap<String, Location> warpsGui = new LinkedHashMap<>();
 
     public WarpList() {
         File configFile = new File("plugins/plugin-mc/warps.yml");
@@ -25,9 +25,9 @@ public class WarpList {
 
         String worldName = "world";
 
-        addWarpGui(Material.ENCHANTING_TABLE, "Enchants", getLocation(worldName, 433.5, 78, 271.5));
-        addWarpGui(Material.OBSIDIAN, "Nether Portal", getLocation(worldName, 369.5, 71, 178.5));
-        addWarpGui(Material.OAK_WOOD, "Oak Wood", getLocation(worldName, 485.5, 68, 295.5));
+        warpsGui.put("Enchants", getLocation(worldName, 433.5, 78, 271.5));
+        warpsGui.put("Nether Portal", getLocation(worldName, 369.5, 71, 178.5));
+        warpsGui.put("Oak Wood", getLocation(worldName, 485.5, 68, 295.5));
     }
 
     public LinkedHashMap<String, Location> loadWarps() {
@@ -51,12 +51,6 @@ public class WarpList {
         }
 
         return warps;
-    }
-
-    public void addWarpGui(Material material, String warpName, Location location) {
-        warpsGui.put(material, new HashMap<>());
-        warpsGui.get(material).put(warpName, location);
-
     }
 
     public void addWarp(String name, Location location) {
