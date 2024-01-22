@@ -1,7 +1,10 @@
 package org.plugins.pluginmc;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.plugins.pluginmc.events.BlockBreak;
 import org.plugins.pluginmc.commands.*;
@@ -12,6 +15,7 @@ import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 import java.util.ArrayList;
 
@@ -34,6 +38,11 @@ public final class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
+
+        ItemStack stoneGenerator = new ItemBuilderUtil(Material.END_STONE, 1)
+                .setName(ChatColor.GREEN + "Stoniarka")
+                .setLore(ChatColor.GRAY + "Place this item on ground")
+                .toItemStack();
 
         //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
