@@ -2,13 +2,16 @@ package org.plugins.pluginmc.events;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
+import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.api.DropApi;
 import org.plugins.pluginmc.objects.DropChance;
 
@@ -93,6 +96,24 @@ public class BlockBreak implements Listener {
         for (Player playerOnline : Bukkit.getOnlinePlayers()) {
             //Information send to player
             playerOnline.sendMessage(diamondAlert);
+        }
+    }
+
+    @EventHandler
+    public void onBlockBreakStone2(BlockBreakEvent event) {
+        Block block = event.getBlock();
+        Location location1 = block.getLocation();
+        Location location2 = location1.clone().subtract(0, 1, 0);
+
+        if (block.getType() == Material.STONE && location2.getBlock().getType() == Material.AIR) {
+            Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    if (location2.getBlock().getType() == Material.END_STONE) {
+                        block.setType(Material.STONE);
+                    }
+                }
+            }, 20L);
         }
     }
 }
