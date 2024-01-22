@@ -42,11 +42,11 @@ public final class Main extends JavaPlugin implements Listener {
                 .setLore(ChatColor.GRAY + "Place this item on ground")
                 .toItemStack();
 
-        ShapedRecipe recipe = new ShapedRecipe(stoneGenerator);
-        recipe.shape("sss", "sds", "sss");
+        ShapedRecipe stoneGeneratorRecipe = new ShapedRecipe(stoneGenerator);
+        stoneGeneratorRecipe.shape("sss", "sds", "sss");
 
-        recipe.setIngredient('s', Material.STONE);
-        recipe.setIngredient('d', Material.DIAMOND_PICKAXE);
+        stoneGeneratorRecipe.setIngredient('s', Material.STONE);
+        stoneGeneratorRecipe.setIngredient('d', Material.DIAMOND_PICKAXE);
 
         //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
@@ -70,6 +70,9 @@ public final class Main extends JavaPlugin implements Listener {
         DropGui dropGui = new DropGui();
         getCommand("drop").setExecutor(new DropCommand(dropGui));
         getCommand("warp").setExecutor(new WarpCommand());
+
+        // Recipes
+        getServer().addRecipe(stoneGeneratorRecipe);
 
         initConfig();
     }
