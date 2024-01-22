@@ -105,7 +105,7 @@ public class BlockBreak implements Listener {
         Location location1 = block.getLocation();
         Location location2 = location1.clone().subtract(0, 1, 0);
 
-        if (block.getType() == Material.STONE && location2.getBlock().getType() == Material.AIR) {
+        if (block.getType() == Material.STONE) {
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable() {
                 @Override
                 public void run() {
