@@ -38,7 +38,7 @@ public final class Main extends JavaPlugin implements Listener {
         instance = this;
 
         ItemStack stoneGenerator = new ItemBuilderUtil(Material.END_STONE, 1)
-                .setName(ChatColor.GREEN + "Stoniarka")
+                .setName(ChatColor.GREEN + "Stone Generator")
                 .setLore(ChatColor.GRAY + "Place this item on ground")
                 .toItemStack();
 
