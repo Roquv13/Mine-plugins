@@ -5,12 +5,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.plugins.pluginmc.events.BlockBreak;
+import org.plugins.pluginmc.events.*;
 import org.plugins.pluginmc.commands.*;
-import org.plugins.pluginmc.events.AsyncPlayerChat;
-import org.plugins.pluginmc.events.InventoryClick;
-import org.plugins.pluginmc.events.PlayerJoin;
 import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
@@ -44,6 +42,12 @@ public final class Main extends JavaPlugin implements Listener {
                 .setLore(ChatColor.GRAY + "Place this item on ground")
                 .toItemStack();
 
+        ShapedRecipe recipe = new ShapedRecipe(stoneGenerator);
+        recipe.shape("sss", "sds", "sss");
+
+        recipe.setIngredient('s', Material.STONE);
+        recipe.setIngredient('d', Material.DIAMOND_PICKAXE);
+
         //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
@@ -52,6 +56,7 @@ public final class Main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
         getServer().getPluginManager().registerEvents(new InventoryClick(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
         configManager = new ConfigManager(getConfig());
 
         //Commands
