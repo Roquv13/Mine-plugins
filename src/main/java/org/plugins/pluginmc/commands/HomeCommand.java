@@ -36,7 +36,7 @@ public class HomeCommand implements CommandExecutor {
             return true;
         } else {
             if (args.length != 1) {
-                player.sendMessage("Enter name of home.");
+                player.sendMessage("/home [home name]");
                 return true;
             }
 
