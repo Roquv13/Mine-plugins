@@ -7,10 +7,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.plugins.pluginmc.api.HomeApi;
+import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.utils.ChatUtil;
 
 import java.util.Map;
 
 public class HomeCommand implements CommandExecutor {
+
+    private ConfigManager configManager;
 
     HomeApi homeApi = new HomeApi();
 
@@ -23,7 +27,8 @@ public class HomeCommand implements CommandExecutor {
 
         if (homeApi.getHomesCount(player) == 0) {
             player.sendMessage("You have no homes added.");
-            return false;
+            player.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/sethome or /sethome [home name]")));
+            return true;
         }
 
         Map<String, Location> homes = homeApi.getHomes(player);
@@ -33,25 +38,20 @@ public class HomeCommand implements CommandExecutor {
 
             if (!homeApi.teleportHome(player, homeName)) {
                 player.sendMessage("Teleport to home failed.");
-                return true;
+                return false;
             }
             player.sendMessage("Successfully teleported to home.");
-            return true;
         } else {
-            if (args.length != 1) {
-                player.sendMessage("/home [home name]");
-                return true;
-            }
+            if (args.length != 1) return false;
 
             if (!homeApi.homeExists(player, args[0])) {
                 player.sendMessage("Home with that name doesn't exists.");
-                return true;
             }
 
             homeApi.teleportHome(player, args[0]);
             player.sendMessage("Successfully teleported to home.");
         }
 
-        return false;
+        return true;
     }
 }
