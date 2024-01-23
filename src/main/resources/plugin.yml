@@ -48,7 +48,7 @@ commands:
 
   home:
     description: Teleport to players home
-    usage: /home or /home [home name]
+    usage: /home /home [home name/list]
     permission: plugin-mc.home
     permission-message: You don't have permission to use /home
 
