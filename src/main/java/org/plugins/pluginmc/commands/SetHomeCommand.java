@@ -18,6 +18,16 @@ public class SetHomeCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
+        if (args.length == 0) {
+            String defaultHome = player.getName();
+            if (homeApi.homeExists(player, defaultHome)) {
+                // Remove to overwrite home
+                homeApi.removeHome(player, defaultHome);
+            }
+            homeApi.addHome(player, defaultHome, player.getLocation());
+            return true;
+        }
+
         if (args.length != 1) return false;
 
         if (!homeApi.addHome(player, args[0], player.getLocation())) {
