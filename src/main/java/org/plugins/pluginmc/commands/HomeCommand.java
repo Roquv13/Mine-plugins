@@ -23,14 +23,17 @@ public class HomeCommand implements CommandExecutor {
 
         if (homeApi.getHomesCount(player) == 0) {
             player.sendMessage("You have no homes added.");
-            return true;
+            return false;
         }
 
         Map<String, Location> homes = homeApi.getHomes(player);
 
-        if (homeApi.getHomesCount(player) == 1) {
-            if (!homeApi.teleportHome(player, homes.entrySet().iterator().next().getKey())) {
+        if (homeApi.getHomesCount(player) == 1 && args.length == 0) {
+            String homeName = homes.entrySet().iterator().next().getKey();
+
+            if (!homeApi.teleportHome(player, homeName)) {
                 player.sendMessage("Teleport to home failed.");
+                return true;
             }
             player.sendMessage("Successfully teleported to home.");
             return true;
