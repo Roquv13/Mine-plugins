@@ -18,18 +18,15 @@ public class RemoveHomeCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if (args.length != 1) {
-            player.sendMessage("/delhome [home name]");
-            return true;
-        }
+        if (args.length != 1) return false;
 
         if (!homeApi.removeHome(player, args[0])) {
-            player.sendMessage("Home with that name doesn't exists.");
-            return true;
+            player.sendMessage("Home with that name doesn't exists. Try again.");
+            return false;
         }
 
         player.sendMessage("Home deleted.");
 
-        return false;
+        return true;
     }
 }
