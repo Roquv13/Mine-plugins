@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class HomeCommand implements CommandExecutor {
 
-    private ConfigManager configManager;
+    private final ConfigManager configManager;
 
     HomeApi homeApi = new HomeApi();
 
