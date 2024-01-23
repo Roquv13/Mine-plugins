@@ -69,4 +69,15 @@ public class HomeApi {
         main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
         return true;
     }
+
+    public boolean teleportHome(Player player, String homeName) {
+        Map<String, Location> homes = getHomes(player);
+
+        if (homes.containsKey(homeName)) return false;
+
+        Location location = homes.get(homeName);
+
+        player.teleport(location);
+        return true;
+    }
 }
