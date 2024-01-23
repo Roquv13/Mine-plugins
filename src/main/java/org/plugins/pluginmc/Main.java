@@ -48,10 +48,10 @@ public final class Main extends JavaPlugin implements Listener {
         stoneGeneratorRecipe.setIngredient('s', Material.STONE);
         stoneGeneratorRecipe.setIngredient('d', Material.DIAMOND_PICKAXE);
 
-        //Console information
+    //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
-        //Register events
+    //Register events
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
@@ -59,19 +59,33 @@ public final class Main extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(new BlockPlace(), this);
         configManager = new ConfigManager(getConfig());
 
-        //Commands
+    //Commands
+        // Help
         getCommand("help").setExecutor(new HelpCommand());
+
+        // ItemShop
         ItemShopGui isGui = new ItemShopGui();
         getCommand("itemshop").setExecutor(new ItemShopCommand(configManager, isGui));
+
+        // Effects
         EffectsGui effectsGui = new EffectsGui();
         getCommand("effects").setExecutor(new EffectsCommand(effectsGui));
+
+        // Chat
         getCommand("chat").setExecutor(new ChatCommand());
+
+        // Vanish
         getCommand("vanish").setExecutor(new VanishComand());
+
+        // Drop
         DropGui dropGui = new DropGui();
         getCommand("drop").setExecutor(new DropCommand(dropGui));
+
+        // Warp
         getCommand("warp").setExecutor(new WarpCommand());
 
-        // Recipes
+    // Recipes
+        // Stone generator
         getServer().addRecipe(stoneGeneratorRecipe);
 
         initConfig();
