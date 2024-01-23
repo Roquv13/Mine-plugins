@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.plugins.pluginmc.Main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,5 +35,29 @@ public class HomeApi {
         }
 
         return map;
+    }
+
+    public List<String> convertHomesMap(Map<String, Location> map) {
+        List<String> list = new ArrayList<>();
+
+        for (Map.Entry<String, Location> me : map.entrySet()) {
+            Location location = me.getValue();
+            list.add(me.getKey() + ":" + location.getX() + ":" + location.getY() + ":" + location.getZ());
+        }
+
+        return list;
+    }
+
+    public boolean addHome(Player player, String homeName, Location location) {
+        Map<String, Location> homes = getHomes(player);
+
+        for (Map.Entry<String, Location> me : homes.entrySet()) {
+            if (homeName.equalsIgnoreCase(me.getKey())) return false;
+        }
+
+        homes.put(homeName, location);
+
+        main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
+        return true;
     }
 }
