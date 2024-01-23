@@ -52,6 +52,17 @@ public class HomeApi {
         return list;
     }
 
+    public List<String> homeList(Map<String, Location> map) {
+        List<String> homeList = new ArrayList<>();
+
+        for (Map.Entry<String, Location> me : map.entrySet()) {
+            String homeName = me.getKey();
+            homeList.add(homeName);
+        }
+
+        return homeList;
+    }
+
     public boolean addHome(Player player, String homeName, Location location) {
         Map<String, Location> homes = getHomes(player);
 
