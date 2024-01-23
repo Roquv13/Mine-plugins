@@ -84,6 +84,11 @@ public final class Main extends JavaPlugin implements Listener {
         // Warp
         getCommand("warp").setExecutor(new WarpCommand());
 
+        // Home
+        getCommand("home").setExecutor(new HomeCommand());
+        getCommand("sethome").setExecutor(new SetHomeCommand());
+        getCommand("delhome").setExecutor(new RemoveHomeCommand());
+
     // Recipes
         // Stone generator
         getServer().addRecipe(stoneGeneratorRecipe);

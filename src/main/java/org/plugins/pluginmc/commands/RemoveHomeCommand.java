@@ -19,7 +19,7 @@ public class RemoveHomeCommand implements CommandExecutor {
         Player player = (Player) sender;
 
         if (args.length != 1) {
-            player.sendMessage("/removehome [home name]");
+            player.sendMessage("/delhome [home name]");
             return true;
         }
 
