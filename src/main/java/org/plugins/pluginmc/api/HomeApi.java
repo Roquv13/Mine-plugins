@@ -83,7 +83,7 @@ public class HomeApi {
     public boolean teleportHome(Player player, String homeName) {
         Map<String, Location> homes = getHomes(player);
 
-        if (homes.containsKey(homeName)) return false;
+        if (!homes.containsKey(homeName)) return false;
 
         Location location = homes.get(homeName);
 

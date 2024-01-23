@@ -40,12 +40,12 @@ public class HomeCommand implements CommandExecutor {
                 return true;
             }
 
-            if (homeApi.homeExists(player, args[0])) {
+            if (!homeApi.homeExists(player, args[0])) {
                 player.sendMessage("Home with that name doesn't exists.");
                 return true;
             }
 
-            player.teleport(homes.get(args[0]));
+            homeApi.teleportHome(player, args[0]);
             player.sendMessage("Successfully teleported to home.");
         }
 
