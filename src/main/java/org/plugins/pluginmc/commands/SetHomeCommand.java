@@ -23,8 +23,10 @@ public class SetHomeCommand implements CommandExecutor {
             if (homeApi.homeExists(player, defaultHome)) {
                 // Remove to overwrite home
                 homeApi.removeHome(player, defaultHome);
+                player.sendMessage("Your previous home is actually removed.");
             }
             homeApi.addHome(player, defaultHome, player.getLocation());
+            player.sendMessage(String.format("Your home created with default name %s.", player.getName()));
             return true;
         }
 
