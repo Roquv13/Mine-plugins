@@ -37,6 +37,10 @@ public class HomeApi {
         return map;
     }
 
+    public int getHomesCount(Player player) {
+        return main.getConfig().getStringList(player.getUniqueId().toString()).size();
+    }
+
     public List<String> convertHomesMap(Map<String, Location> map) {
         List<String> list = new ArrayList<>();
 
