@@ -46,6 +46,24 @@ commands:
     permission: plugin-mc.warp
     permission-message: You don't have permission to use /warp
 
+  home:
+    description: Teleport to players home
+    usage: /home or /home [home name]
+    permission: plugin-mc.home
+    permission-message: You don't have permission to use /home
+
+  sethome:
+    description: Set up new home for player
+    usage: /sethome [home name]
+    permission: plugin-mc.sethome
+    permission-message: You don't have permission to use /sethome
+
+  delhome:
+    description: Delete player home
+    usage: /delhome [home name]
+    permission: plugin-mc.delhome
+    permission-message: You don't have permission to use /delhome
+
 permissions:
   help:
     description: Allows you to get infomations about plugin
