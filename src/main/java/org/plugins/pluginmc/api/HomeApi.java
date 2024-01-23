@@ -51,11 +51,20 @@ public class HomeApi {
     public boolean addHome(Player player, String homeName, Location location) {
         Map<String, Location> homes = getHomes(player);
 
-        for (Map.Entry<String, Location> me : homes.entrySet()) {
-            if (homeName.equalsIgnoreCase(me.getKey())) return false;
-        }
+        if (homes.containsKey(homeName)) return false;
 
         homes.put(homeName, location);
+
+        main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
+        return true;
+    }
+
+    public boolean removeHome(Player player, String homeName) {
+        Map<String, Location> homes = getHomes(player);
+
+        if (!homes.containsKey(homeName)) return false;
+
+        homes.remove(homeName);
 
         main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
         return true;
