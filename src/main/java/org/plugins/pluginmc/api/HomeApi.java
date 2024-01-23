@@ -46,7 +46,7 @@ public class HomeApi {
 
         for (Map.Entry<String, Location> me : map.entrySet()) {
             Location location = me.getValue();
-            list.add(me.getKey() + ":" + location.getX() + ":" + location.getY() + ":" + location.getZ());
+            list.add(me.getKey() + ":" + location.getWorld().getName() + ":" + location.getX() + ":" + location.getY() + ":" + location.getZ());
         }
 
         return list;
@@ -60,6 +60,7 @@ public class HomeApi {
         homes.put(homeName, location);
 
         main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
+        main.saveConfig();
         return true;
     }
 
@@ -71,6 +72,7 @@ public class HomeApi {
         homes.remove(homeName);
 
         main.getConfig().set(player.getUniqueId().toString(), convertHomesMap(homes));
+        main.saveConfig();
         return true;
     }
 

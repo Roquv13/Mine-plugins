@@ -23,7 +23,12 @@ public class SetHomeCommand implements CommandExecutor {
             return true;
         }
 
-        homeApi.addHome(player, args[0], player.getLocation());
+        if (!homeApi.addHome(player, args[0], player.getLocation())) {
+            player.sendMessage("Home with that name already exists.");
+            return true;
+        }
+
+        player.sendMessage("Home created.");
 
         return false;
     }

@@ -23,7 +23,12 @@ public class RemoveHomeCommand implements CommandExecutor {
             return true;
         }
 
-        homeApi.removeHome(player, args[0]);
+        if (!homeApi.removeHome(player, args[0])) {
+            player.sendMessage("Home with that name doesn't exists.");
+            return true;
+        }
+
+        player.sendMessage("Home deleted.");
 
         return false;
     }
