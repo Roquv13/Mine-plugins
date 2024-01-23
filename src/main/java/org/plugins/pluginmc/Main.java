@@ -85,7 +85,7 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("warp").setExecutor(new WarpCommand());
 
         // Home
-        getCommand("home").setExecutor(new HomeCommand());
+        getCommand("home").setExecutor(new HomeCommand(configManager));
         getCommand("sethome").setExecutor(new SetHomeCommand());
         getCommand("delhome").setExecutor(new RemoveHomeCommand());
 

@@ -22,4 +22,8 @@ public class ConfigManager {
     public String getPermissionError() {
         return config.getString("messages.no-permissions");
     }
+
+    public String getUsage() {
+        return config.getString("messages.usage");
+    }
 }

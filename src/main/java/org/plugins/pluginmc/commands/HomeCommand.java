@@ -18,6 +18,10 @@ public class HomeCommand implements CommandExecutor {
 
     HomeApi homeApi = new HomeApi();
 
+    public HomeCommand(ConfigManager configManager) {
+        this.configManager = configManager;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 
@@ -27,7 +31,7 @@ public class HomeCommand implements CommandExecutor {
 
         if (homeApi.getHomesCount(player) == 0) {
             player.sendMessage("You have no homes added.");
-            player.sendMessage(ChatUtil.colorize(configManager.getCorrectUsage().replace("{USAGE}", "/sethome or /sethome [home name]")));
+            player.sendMessage(ChatUtil.colorize(configManager.getUsage().replace("{USAGE}", "/sethome or /sethome [home name]")));
             return true;
         }
 
