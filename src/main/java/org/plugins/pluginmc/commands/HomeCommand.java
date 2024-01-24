@@ -10,6 +10,7 @@ import org.plugins.pluginmc.api.HomeApi;
 import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ChatUtil;
 
+import java.util.List;
 import java.util.Map;
 
 public class HomeCommand implements CommandExecutor {
@@ -47,6 +48,18 @@ public class HomeCommand implements CommandExecutor {
             player.sendMessage("Successfully teleported to home.");
         } else {
             if (args.length != 1) return false;
+
+            if (args[0].equalsIgnoreCase("list")) {
+                Map<String, Location> homeList = homeApi.getHomes(player);
+
+                List<String> homeNames = homeApi.homeList(homeList);
+
+                player.sendMessage("List of your homes:");
+                for (String name : homeNames) {
+                    player.sendMessage(name);
+                }
+                return true;
+            }
 
             if (!homeApi.homeExists(player, args[0])) {
                 player.sendMessage("Home with that name doesn't exists.");
