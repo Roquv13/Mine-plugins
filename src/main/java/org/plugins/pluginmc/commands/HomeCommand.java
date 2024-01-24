@@ -41,7 +41,9 @@ public class HomeCommand implements CommandExecutor {
         if (homeApi.getHomesCount(player) == 1 && args.length == 0) {
             String homeName = homes.entrySet().iterator().next().getKey();
 
-            if (!homeApi.teleportHome(player, homeName)) {
+            boolean playerTeleport = homeApi.teleportHome(player, homeName);
+
+            if (!playerTeleport) {
                 player.sendMessage("Teleport to home failed.");
                 player.sendMessage("Usage: /home");
                 return false;
