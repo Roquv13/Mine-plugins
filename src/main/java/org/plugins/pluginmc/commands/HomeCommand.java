@@ -43,6 +43,7 @@ public class HomeCommand implements CommandExecutor {
 
             if (!homeApi.teleportHome(player, homeName)) {
                 player.sendMessage("Teleport to home failed.");
+                player.sendMessage("Usage: /home");
                 return false;
             }
             player.sendMessage("Successfully teleported to home.");
@@ -63,6 +64,7 @@ public class HomeCommand implements CommandExecutor {
 
             if (!homeApi.homeExists(player, args[0])) {
                 player.sendMessage("Home with that name doesn't exists.");
+                return true;
             }
 
             homeApi.teleportHome(player, args[0]);
