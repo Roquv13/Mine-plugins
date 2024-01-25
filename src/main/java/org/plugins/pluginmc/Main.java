@@ -13,6 +13,7 @@ import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.tablist.TabListUpdater;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 import java.util.ArrayList;
