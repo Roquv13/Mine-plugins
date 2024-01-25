@@ -7,9 +7,12 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class PlayerJoin implements Listener {
 
-    Main main = Main.getInstance();
+    private final Map<Player, Long> playerJoinTimes = new HashMap<>();
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -21,6 +24,18 @@ public class PlayerJoin implements Listener {
 
         player.sendMessage(ChatUtil.colorize(Main.configManager.getJoinMessage().replace("{PLAYER}", player.getName())));
 
-        main.playerJoinTimes.put(player, System.currentTimeMillis());
+        playerJoinTimes.put(player, System.currentTimeMillis());
+    }
+
+    public long getTotalPlayTime(Player player) {
+        if (!playerJoinTimes.containsKey(player))
+            return 0;
+
+        long joinTime = playerJoinTimes.get(player);
+        return System.currentTimeMillis() - joinTime;
+    }
+
+    public void removePlayer(Player player) {
+        playerJoinTimes.remove(player);
     }
 }
