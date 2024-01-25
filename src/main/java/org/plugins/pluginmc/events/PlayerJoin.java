@@ -1,7 +1,5 @@
 package org.plugins.pluginmc.events;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,6 +8,8 @@ import org.plugins.pluginmc.Main;
 import org.plugins.pluginmc.utils.ChatUtil;
 
 public class PlayerJoin implements Listener {
+
+    Main main = Main.getInstance();
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
@@ -21,13 +21,6 @@ public class PlayerJoin implements Listener {
 
         player.sendMessage(ChatUtil.colorize(Main.configManager.getJoinMessage().replace("{PLAYER}", player.getName())));
 
-        updateTabList(player);
-    }
-
-    public void updateTabList(Player player) {
-        String header = ChatColor.AQUA + "Welcome to server!";
-        String footer = ChatColor.GREEN + "Have fun!";
-
-        player.setPlayerListHeaderFooter(header, footer);
+        main.playerJoinTimes.put(player, System.currentTimeMillis());
     }
 }

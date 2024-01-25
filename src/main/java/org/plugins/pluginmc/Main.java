@@ -1,5 +1,6 @@
 package org.plugins.pluginmc;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,6 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.plugins.pluginmc.events.*;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.gui.DropGui;
@@ -16,6 +18,8 @@ import org.plugins.pluginmc.manager.ConfigManager;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class Main extends JavaPlugin implements Listener {
 
@@ -28,6 +32,8 @@ public final class Main extends JavaPlugin implements Listener {
     public static Boolean isChatEnabled = true;
 
     public static ArrayList<Player> invisiblePlayers = new ArrayList<>();
+
+    public Map<Player, Long> playerJoinTimes;
 
     public static Main getInstance() {
         return instance;
@@ -52,6 +58,7 @@ public final class Main extends JavaPlugin implements Listener {
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));
 
     //Register events
+        getServer().getPluginManager().registerEvents(this, this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new BlockBreak(), this);
         getServer().getPluginManager().registerEvents(new AsyncPlayerChat(), this);
@@ -93,6 +100,19 @@ public final class Main extends JavaPlugin implements Listener {
         // Stone generator
         getServer().addRecipe(stoneGeneratorRecipe);
 
+    // Player time
+        playerJoinTimes = new HashMap<>();
+
+        new BukkitRunnable() {
+
+            @Override
+            public void run() {
+                for (Player player : Bukkit.getOnlinePlayers()) {
+                    updateTabList(player);
+                }
+            }
+        }.runTaskTimer(this, 0, 20);
+
         initConfig();
     }
 
@@ -105,5 +125,27 @@ public final class Main extends JavaPlugin implements Listener {
     private void initConfig() {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+    }
+
+    public void updateTabList(Player player) {
+        // Header
+        String header = "Welcome, " + player.getName();
+
+        // Footer
+        long totalTime = getTotalPlayTime(player);
+        int hours = (int) (totalTime / 3600000);
+        int minutes = (int) ((totalTime % 3600000) / 60000);
+        int seconds = (int) ((totalTime % 60000) / 1000);
+        String footer = "Play time: " + hours + "h " + minutes + "m " + seconds + "s";
+
+        // Set up header and footer
+        player.setPlayerListHeaderFooter(header, footer);
+    }
+
+    private long getTotalPlayTime(Player player) {
+        if (!playerJoinTimes.containsKey(player)) return 0;
+
+        long joinTime = playerJoinTimes.get(player);
+        return System.currentTimeMillis() - joinTime;
     }
 }
