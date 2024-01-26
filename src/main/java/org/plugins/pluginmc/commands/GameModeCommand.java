@@ -1,12 +1,23 @@
 package org.plugins.pluginmc.commands;
 
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class GameModeCommand implements CommandExecutor {
+
+    List<GameMode> gameModes = Arrays.asList(
+            GameMode.SURVIVAL,
+            GameMode.CREATIVE,
+            GameMode.SPECTATOR
+    );
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
@@ -20,6 +31,14 @@ public class GameModeCommand implements CommandExecutor {
         if (!player.isOp()) {
             player.sendMessage("You have no permission!");
             return true;
+        }
+
+        if (args.length == 1) {
+
+        }
+
+        if (args.length == 2) {
+
         }
 
         return false;
