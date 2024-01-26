@@ -34,6 +34,11 @@ public class GameModeCommand implements CommandExecutor {
             return true;
         }
 
+        if (args.length == 0) {
+            player.sendMessage("You need to type arguments.");
+            return false;
+        }
+
         if (args.length == 1) {
 
         }
@@ -42,7 +47,7 @@ public class GameModeCommand implements CommandExecutor {
 
         }
 
-        return false;
+        return true;
     }
 
     public boolean isInt(String toBeInt) {
