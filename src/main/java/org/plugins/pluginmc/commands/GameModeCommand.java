@@ -39,12 +39,19 @@ public class GameModeCommand implements CommandExecutor {
             return false;
         }
 
+        GameMode selected = null;
+
         if (isInt(args[0])) {
             int x = Integer.parseInt(args[0]);
 
             if (x >= 0 && x <= 4) {
-                
+                selected = gameModes.get(x);
+            } else {
+                player.sendMessage("Your number is out of range.");
+                return false;
             }
+
+            return true;
         }
 
         if (args.length == 1) {
