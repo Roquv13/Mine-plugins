@@ -64,6 +64,12 @@ commands:
     permission: plugin-mc.delhome
     permission-message: You don't have permission to use /delhome
 
+  gm:
+    description: Set up gamemode to player
+    usage: /gm [0/1/2/3/4]
+    permission: plugin-mc.gm
+    permission-message: You don't have permission to use /gm
+
 permissions:
   help:
     description: Allows you to get infomations about plugin
