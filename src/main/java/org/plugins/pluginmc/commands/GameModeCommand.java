@@ -64,7 +64,8 @@ public class GameModeCommand implements CommandExecutor {
         }
 
         if (args.length == 1) {
-
+            player.setGameMode(selected);
+            player.sendMessage("Now your gamemode is " + selected.toString());
         }
 
         if (args.length == 2) {
