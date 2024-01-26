@@ -55,7 +55,11 @@ public class GameModeCommand implements CommandExecutor {
         } else {
             String x = args[0].toLowerCase();
 
-
+            if (isGameMode(x)) {
+                selected = GameMode.valueOf(x);
+            } else {
+                player.sendMessage("This game mode does not exist");
+            }
 
         }
 
