@@ -52,6 +52,11 @@ public class GameModeCommand implements CommandExecutor {
             }
 
             return true;
+        } else {
+            String x = args[0].toLowerCase();
+
+
+
         }
 
         if (args.length == 1) {
@@ -60,6 +65,16 @@ public class GameModeCommand implements CommandExecutor {
 
         if (args.length == 2) {
 
+        }
+
+        return true;
+    }
+
+    public boolean isGameMode(String toBeGameMode) {
+        try {
+            GameMode.valueOf(toBeGameMode);
+        } catch (Exception e) {
+            return false;
         }
 
         return true;
