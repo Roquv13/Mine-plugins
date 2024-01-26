@@ -39,6 +39,14 @@ public class GameModeCommand implements CommandExecutor {
             return false;
         }
 
+        if (isInt(args[0])) {
+            int x = Integer.parseInt(args[0]);
+
+            if (x >= 0 && x <= 4) {
+                
+            }
+        }
+
         if (args.length == 1) {
 
         }
