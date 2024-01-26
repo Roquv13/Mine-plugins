@@ -16,6 +16,7 @@ public class GameModeCommand implements CommandExecutor {
     List<GameMode> gameModes = Arrays.asList(
             GameMode.SURVIVAL,
             GameMode.CREATIVE,
+            GameMode.ADVENTURE,
             GameMode.SPECTATOR
     );
 
@@ -42,5 +43,15 @@ public class GameModeCommand implements CommandExecutor {
         }
 
         return false;
+    }
+
+    public boolean isInt(String toBeInt) {
+        try {
+            Integer.parseInt(toBeInt);
+        } catch (Exception e) {
+            return false;
+        }
+
+        return true;
     }
 }
