@@ -67,10 +67,20 @@ public class GameModeCommand implements CommandExecutor {
         if (args.length == 1) {
             player.setGameMode(selected);
             player.sendMessage("Now your gamemode is " + selected.toString());
+            return true;
         }
 
         if (args.length == 2) {
             Player target = Bukkit.getPlayer(args[1]);
+
+            if (target == null) {
+                player.sendMessage("This player doesn't exists or is offline.");
+                return true;
+            }
+
+            target.setGameMode(selected);
+            player.sendMessage("Player " + target.getName() + " has gamemode set to " + selected.toString());
+            return true;
         }
 
         return true;
