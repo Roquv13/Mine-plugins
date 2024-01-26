@@ -94,6 +94,9 @@ public final class Main extends JavaPlugin implements Listener {
         getCommand("sethome").setExecutor(new SetHomeCommand());
         getCommand("delhome").setExecutor(new RemoveHomeCommand());
 
+        // Gamemode
+        getCommand("gm").setExecutor(new GameModeCommand());
+
     // Recipes
         // Stone generator
         getServer().addRecipe(stoneGeneratorRecipe);
