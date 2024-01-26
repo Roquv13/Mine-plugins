@@ -1,5 +1,6 @@
 package org.plugins.pluginmc.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -69,7 +70,7 @@ public class GameModeCommand implements CommandExecutor {
         }
 
         if (args.length == 2) {
-
+            Player target = Bukkit.getPlayer(args[1]);
         }
 
         return true;
