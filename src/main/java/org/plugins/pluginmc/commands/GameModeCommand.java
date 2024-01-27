@@ -8,7 +8,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,14 +44,12 @@ public class GameModeCommand implements CommandExecutor {
         if (isInt(args[0])) {
             int x = Integer.parseInt(args[0]);
 
-            if (x >= 0 && x <= 4) {
+            if (x >= 0 && x < 4) {
                 selected = gameModes.get(x);
             } else {
                 player.sendMessage("Your number is out of range.");
-                return false;
             }
 
-            return true;
         } else {
             String x = args[0].toLowerCase();
 
