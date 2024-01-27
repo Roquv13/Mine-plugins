@@ -14,4 +14,9 @@ public class ScoreboardUpdater {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         player.setScoreboard(scoreboard);
     }
+
+    public static void setScore(int scoreValue, Objective objective, String text) {
+        Score score = objective.getScore(text);
+        score.setScore(scoreValue);
+    }
 }
