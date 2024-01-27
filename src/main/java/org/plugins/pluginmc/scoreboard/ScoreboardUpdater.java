@@ -25,4 +25,10 @@ public class ScoreboardUpdater {
         Score score = objective.getScore(text);
         score.setScore(scoreValue);
     }
+
+    public static void updateScoreboard(){
+        for (Player players : Bukkit.getOnlinePlayers()) {
+            createScoreboard(players);
+        }
+    }
 }
