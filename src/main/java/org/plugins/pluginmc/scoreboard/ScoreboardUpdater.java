@@ -12,7 +12,13 @@ public class ScoreboardUpdater {
         Objective objective = scoreboard.registerNewObjective("Stats", Criteria.DUMMY, "Scoreboard");
 
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+
+        setScore(3, objective, "Online: " + Bukkit.getOnlinePlayers().size());
+        setScore(2, objective, " ");
+        setScore(1, objective, "IP: Server.com");
+
         player.setScoreboard(scoreboard);
+
     }
 
     public static void setScore(int scoreValue, Objective objective, String text) {
