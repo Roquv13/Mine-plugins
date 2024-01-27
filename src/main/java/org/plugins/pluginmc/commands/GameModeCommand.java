@@ -42,19 +42,19 @@ public class GameModeCommand implements CommandExecutor {
         GameMode selected = null;
 
         if (isInt(args[0])) {
-            int x = Integer.parseInt(args[0]);
+            int gmInt = Integer.parseInt(args[0]);
 
-            if (x >= 0 && x < 4) {
-                selected = gameModes.get(x);
+            if (gmInt >= 0 && gmInt < 4) {
+                selected = gameModes.get(gmInt);
             } else {
                 player.sendMessage("Your number is out of range.");
             }
 
         } else {
-            String x = args[0].toLowerCase();
+            String gmName = args[0].toUpperCase();
 
-            if (isGameMode(x)) {
-                selected = GameMode.valueOf(x);
+            if (isGameMode(gmName)) {
+                selected = GameMode.valueOf(gmName);
             } else {
                 player.sendMessage("This game mode does not exist");
             }
