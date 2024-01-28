@@ -13,6 +13,7 @@ import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.scoreboard.ScoreboardUpdater;
 import org.plugins.pluginmc.tablist.TabListUpdater;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
@@ -103,6 +104,9 @@ public final class Main extends JavaPlugin implements Listener {
 
     // Player time
         new TabListUpdater(playerJoin).runTaskTimer(this, 0, 20);
+
+    // Scoreboard
+        new ScoreboardUpdater(playerJoin).runTaskTimer(this, 0, 20 * 3);
 
         initConfig();
     }
