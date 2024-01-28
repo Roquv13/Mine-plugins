@@ -2,9 +2,22 @@ package org.plugins.pluginmc.scoreboard;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
+import org.plugins.pluginmc.events.PlayerJoin;
 
-public class ScoreboardUpdater {
+public class ScoreboardUpdater extends BukkitRunnable {
+
+    private final PlayerJoin playerJoin;
+
+    public ScoreboardUpdater(PlayerJoin playerJoin) {
+        this.playerJoin = playerJoin;
+    }
+
+    @Override
+    public void run() {
+        updateScoreboard();
+    }
 
     public static void createScoreboard(Player player) {
         ScoreboardManager manager = (ScoreboardManager) Bukkit.getScoreboardManager();
