@@ -1,6 +1,7 @@
 package org.plugins.pluginmc.scoreboard;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.*;
@@ -22,13 +23,15 @@ public class ScoreboardUpdater extends BukkitRunnable {
     public static void createScoreboard(Player player) {
         ScoreboardManager manager = (ScoreboardManager) Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("Stats", Criteria.DUMMY, "Scoreboard");
+        Objective dummyObj = scoreboard.registerNewObjective("Stats", Criteria.DUMMY, "Scoreboard");
 
-        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+        dummyObj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-        setScore(3, objective, "Online: " + Bukkit.getOnlinePlayers().size());
-        setScore(2, objective, " ");
-        setScore(1, objective, "IP: Server.com");
+        setScore(5, dummyObj, ChatColor.GOLD + "Edition: " + ChatColor.AQUA + "Beta");
+        setScore(4, dummyObj, " ");
+        setScore(3, dummyObj, ChatColor.GOLD + "Online: " + ChatColor.GREEN + Bukkit.getOnlinePlayers().size());
+        setScore(2, dummyObj, " ");
+        setScore(1, dummyObj,  ChatColor.GOLD + "IP: " + ChatColor.RED + "Server.com");
 
         player.setScoreboard(scoreboard);
 
