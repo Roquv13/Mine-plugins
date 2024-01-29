@@ -99,6 +99,9 @@ public final class Main extends JavaPlugin implements Listener {
         // Gamemode
         getCommand("gm").setExecutor(new GameModeCommand());
 
+        // Holograms
+        getCommand("hd").setExecutor(new HologramCommand());
+
     // Recipes
         // Stone generator
         getServer().addRecipe(stoneGeneratorRecipe);
