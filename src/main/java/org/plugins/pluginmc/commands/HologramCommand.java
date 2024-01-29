@@ -18,5 +18,8 @@ public class HologramCommand implements CommandExecutor {
     public void createHologram(Location location, String text) {
         ArmorStand armorStand = (ArmorStand) location.getWorld().spawnEntity(location, EntityType.ARMOR_STAND);
         armorStand.setVisible(false);
+        armorStand.setGravity(false);
+        armorStand.setCustomNameVisible(true);
+        armorStand.setCustomName(text);
     }
 }
