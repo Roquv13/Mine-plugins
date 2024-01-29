@@ -70,6 +70,12 @@ commands:
     permission: plugin-mc.gm
     permission-message: You don't have permission to use /gm
 
+  hd:
+    description: Set up holograms
+    usage: /hd
+    permission: plugin-mc.hd
+    permission-message: You don't have permission to use /hd
+
 permissions:
   help:
     description: Allows you to get infomations about plugin
