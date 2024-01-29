@@ -1,5 +1,6 @@
 package org.plugins.pluginmc.commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,6 +16,14 @@ public class HologramCommand implements CommandExecutor {
 
         if (sender instanceof Player) {
             Player player = (Player) sender;
+
+            Location playerLocation = player.getLocation().add(0, 2, 0);
+
+            createHologram(playerLocation, ChatColor.GREEN + "Box");
+
+            Location playerLocation2 = playerLocation.clone().add(1, 1, 0);
+
+            createHologram(playerLocation2, ChatColor.AQUA + "TEXT HOLO");
         } else {
             sender.sendMessage("Only for players!");
         }
