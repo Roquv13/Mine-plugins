@@ -114,7 +114,7 @@ public final class Main extends JavaPlugin implements Listener {
         new ScoreboardUpdater(playerJoin).runTaskTimer(this, 0, 20 * 3);
 
     // Auto message
-        new AutoMessageSender(this, "messages.yml").runTaskTimer(this, 0, 20 * 60);
+        new AutoMessageSender(this, "autoMessages.yml").runTaskTimer(this, 0, 20 * 60);
 
         initConfig();
     }
