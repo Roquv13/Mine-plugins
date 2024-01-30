@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.plugins.pluginmc.automessage.AutoMessageSender;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.*;
 import org.plugins.pluginmc.gui.DropGui;
@@ -111,6 +112,9 @@ public final class Main extends JavaPlugin implements Listener {
 
     // Scoreboard
         new ScoreboardUpdater(playerJoin).runTaskTimer(this, 0, 20 * 3);
+
+    // Auto message
+        new AutoMessageSender().runTaskTimer(this, 0, 20 * 3);
 
         initConfig();
     }
