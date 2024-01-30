@@ -23,6 +23,9 @@ public class AutoMessageSender extends BukkitRunnable {
         this.config = loadConfig(plugin, filePath);
         this.messages = config.getStringList("messages");
         this.prefix = ChatColor.DARK_GRAY + "[" + ChatColor.AQUA + "Info" + ChatColor.DARK_GRAY + "] ";
+
+        // Debug load messages
+        plugin.getLogger().info("Loaded " + messages.size() + " messages: " + messages);
     }
 
     private FileConfiguration loadConfig(JavaPlugin plugin, String filePath) {
