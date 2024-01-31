@@ -1,6 +1,7 @@
 package org.plugins.pluginmc.api;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
@@ -12,4 +13,9 @@ public class RecipeApi {
                 .setName(ChatColor.LIGHT_PURPLE + name)
                 .toItemStack();
     }
+
+    public void generateHole(Location location, Material material) {
+
+    }
+
 }
