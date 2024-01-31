@@ -15,7 +15,9 @@ public class RecipeApi {
     }
 
     public void generateHole(Location location, Material material) {
-
+        for (int i = (int) location.getY(); i > 0; i--) {
+            new Location(location.getWorld(), location.getX(), i, location.getZ()).getBlock().setType(material);
+        }
     }
 
 }
