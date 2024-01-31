@@ -2,11 +2,13 @@ package org.plugins.pluginmc;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.plugins.pluginmc.api.RecipeApi;
 import org.plugins.pluginmc.automessage.AutoMessageSender;
 import org.plugins.pluginmc.commands.*;
 import org.plugins.pluginmc.events.*;
@@ -14,6 +16,8 @@ import org.plugins.pluginmc.gui.DropGui;
 import org.plugins.pluginmc.gui.EffectsGui;
 import org.plugins.pluginmc.gui.ItemShopGui;
 import org.plugins.pluginmc.manager.ConfigManager;
+import org.plugins.pluginmc.objects.Farmer;
+import org.plugins.pluginmc.objects.Item;
 import org.plugins.pluginmc.scoreboard.ScoreboardUpdater;
 import org.plugins.pluginmc.tablist.TabListUpdater;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
@@ -32,6 +36,8 @@ public final class Main extends JavaPlugin implements Listener {
 
     public static ArrayList<Player> invisiblePlayers = new ArrayList<>();
 
+    RecipeApi recipeApi = new RecipeApi();
+
     public static Main getInstance() {
         return instance;
     }
@@ -42,6 +48,7 @@ public final class Main extends JavaPlugin implements Listener {
 
         instance = this;
 
+    //Stone generator recipe register
         ItemStack stoneGenerator = new ItemBuilderUtil(Material.END_STONE, 1)
                 .setName(ChatColor.GREEN + "Stone Generator")
                 .setLore(ChatColor.GRAY + "Place this item on ground")
@@ -52,6 +59,13 @@ public final class Main extends JavaPlugin implements Listener {
 
         stoneGeneratorRecipe.setIngredient('s', Material.STONE);
         stoneGeneratorRecipe.setIngredient('d', Material.DIAMOND_PICKAXE);
+
+    //Farmers recipes register
+        for (Farmer farmer : recipeApi.farmers) {
+            ItemStack item = farmer.getFarmerItem();
+            NamespacedKey key = new NamespacedKey(this, item.getType().name());
+            getServer().addRecipe(recipeApi.getRecipe(item.getType(), key, item));
+        }
 
     //Console information
         this.getLogger().info(String.format("Plugin \"%s\" is starting...", name));

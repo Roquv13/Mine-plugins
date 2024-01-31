@@ -20,7 +20,6 @@ public class RecipeApi {
             new Farmer(getFarmer(Material.AIR, "Moat digger"), Material.AIR)
     );
 
-    //NamespacedKey key = new NamespacedKey(plugin, "my_recipe");
     public ShapedRecipe getRecipe(Material mainMaterial, NamespacedKey key, ItemStack result) {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
         recipe.shape("ddd", "dcd", "ddd");
