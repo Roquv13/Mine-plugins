@@ -3,10 +3,18 @@ package org.plugins.pluginmc.api;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 public class RecipeApi {
+
+    public ShapedRecipe getRecipe(Material mainMaterial, NamespacedKey key, ItemStack result) {
+        ShapedRecipe recipe = new ShapedRecipe(key, result);
+
+        return recipe;
+    }
 
     public ItemStack getFarmer(Material mainMaterial, String name) {
         return new ItemBuilderUtil(mainMaterial, 1)
