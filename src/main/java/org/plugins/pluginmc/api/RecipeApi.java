@@ -10,8 +10,13 @@ import org.plugins.pluginmc.utils.ItemBuilderUtil;
 
 public class RecipeApi {
 
+    //NamespacedKey key = new NamespacedKey(plugin, "my_recipe");
     public ShapedRecipe getRecipe(Material mainMaterial, NamespacedKey key, ItemStack result) {
         ShapedRecipe recipe = new ShapedRecipe(key, result);
+        recipe.shape("ddd", "dcd", "ddd");
+        
+        recipe.setIngredient('d', Material.DIAMOND_PICKAXE);
+        recipe.setIngredient('c', mainMaterial);
 
         return recipe;
     }
