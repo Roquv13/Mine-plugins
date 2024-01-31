@@ -13,4 +13,19 @@ public class Farmer {
         this.holeGenerateType = holeGenerateType;
     }
 
+    public ItemStack getFarmerItem() {
+        return farmerItem;
+    }
+
+    public void setFarmerItem(ItemStack farmerItem) {
+        this.farmerItem = farmerItem;
+    }
+
+    public Material getHoleGenerateType() {
+        return holeGenerateType;
+    }
+
+    public void setHoleGenerateType(Material holeGenerateType) {
+        this.holeGenerateType = holeGenerateType;
+    }
 }
