@@ -7,7 +7,10 @@ import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.ItemStack;
 import org.plugins.pluginmc.Main;
+import org.plugins.pluginmc.api.RecipeApi;
+import org.plugins.pluginmc.objects.Farmer;
 
 public class BlockPlace implements Listener {
 
@@ -24,6 +27,21 @@ public class BlockPlace implements Listener {
                     location2.getBlock().setType(Material.STONE);
                 }
             }, 20L);
+        }
+    }
+
+    RecipeApi recipeApi = new RecipeApi();
+
+    @EventHandler
+    public void onBlockPlaceFarmer(BlockPlaceEvent event) {
+        ItemStack itemStack = event.getItemInHand();
+        Location location = event.getBlock().getLocation();
+
+        for (Farmer farmer : recipeApi.farmers) {
+            if (itemStack.isSimilar(farmer.getFarmerItem())) {
+                recipeApi.generateHole(location, farmer.getHoleGenerateType());
+                break;
+            }
         }
     }
 }
